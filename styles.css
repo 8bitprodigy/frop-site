@@ -67,7 +67,10 @@ body {
     background-color: #ffffef;
     border-color:     #428a42;
     left: 0px;
-    flex-shrink:1;
+    padding-top:  20px;
+    padding-left: 40px;
+    min-width:200px;
+    flex-shrink:0;
 }
 
 #content {
@@ -91,6 +94,12 @@ body {
     text-indent: 1.5em;
     display: block;
     max-width: 800px;
+    margin: auto;
+}
+#content img {
+    display: block;
+    width: 100%;
+    height: auto;
     margin: auto;
 }
 
