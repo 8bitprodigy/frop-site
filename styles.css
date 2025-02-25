@@ -66,6 +66,7 @@ body {
     font-family: 'Liver';
     background-color: #ffffef;
     border-color:     #428a42;
+    display: block;
     left: 0px;
     padding-top:  20px;
     padding-left: 40px;
