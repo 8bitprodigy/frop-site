@@ -37,13 +37,13 @@ body {
 .dir::marker {
   display: inline-block;
   vertical-align: middle;
-    content: url("img/folder.gif");
+    content: url("/img/folder.gif");
 }
 
 .page::marker {
   display: inline-block;
   vertical-align: middle;
-    content: url("img/file.gif");
+    content: url("/img/file.gif");
 }
 
 #container {
