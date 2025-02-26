@@ -35,11 +35,15 @@ body {
 }
 
 .dir::marker {
-    content: url("/img/folder.gif");
+  display: inline-block;
+  vertical-align: middle;
+    content: url("img/folder.gif");
 }
 
-.page {
-    content: url("/img/file.gif");
+.page::marker {
+  display: inline-block;
+  vertical-align: middle;
+    content: url("img/file.gif");
 }
 
 #container {
@@ -80,6 +84,12 @@ body {
     padding-left: 40px;
     min-width:200px;
     flex-shrink:0;
+}
+#sidebar ul li {
+    padding-left: 8px;
+    font-size: 14pt;
+    display: list-item;
+    align-items: center;
 }
 
 #content {
