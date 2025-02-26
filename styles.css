@@ -20,7 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     position: absolute;
-    background-color: #fff;
+    background: #737573;
 }
 
 .spacer {
@@ -47,11 +47,12 @@ body {
 }
 
 #container {
-    background: #737573;
     display: flex;
     flex-direction: column;
     height:100vh;
     padding: 5px;
+    width: 1024px;
+    margin: auto;
 }
 
 #links {
@@ -97,7 +98,6 @@ body {
     border-color: #52aaad;
     display: block;
     flex-grow: 1;
-    min-width:570px;
     padding-left: 80px;
     padding-right: 80px;
     padding-top: 40px;
