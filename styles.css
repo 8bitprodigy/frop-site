@@ -34,6 +34,14 @@ body {
     display: flex;
 }
 
+.dir {
+    background: url("/img/folder.gif") no-repeat left top;
+}
+
+.page {
+    background: url("/img/file.gif") no-repeat left top;
+}
+
 #container {
     background: #737573;
     display: flex;
@@ -108,4 +116,5 @@ body {
     background-color: #8c8ace;
     border-color:     #00009c;
     padding-left:10px;
+    padding-right: 10px;
 }
