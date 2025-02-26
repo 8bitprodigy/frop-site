@@ -35,11 +35,11 @@ body {
 }
 
 .dir {
-    background: url("/img/folder.gif") no-repeat left top;
+    list-style-image: url("/img/folder.gif");
 }
 
 .page {
-    background: url("/img/file.gif") no-repeat left top;
+    list-style-image: url("/img/file.gif");
 }
 
 #container {
