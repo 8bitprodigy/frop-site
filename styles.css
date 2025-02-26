@@ -34,12 +34,12 @@ body {
     display: flex;
 }
 
-.dir {
-    list-style-image: url("/img/folder.gif");
+.dir::marker {
+    content: url("/img/folder.gif");
 }
 
 .page {
-    list-style-image: url("/img/file.gif");
+    content: url("/img/file.gif");
 }
 
 #container {
