@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Liver';
-  src: url('font/Liver.woff2');
+  src: url('/Liver.woff2');
 }
 
 @font-face {
   font-family: 'Liver-mono';
-  src: url('font/Liver_mono.woff2');
+  src: url('/Liver_mono.woff2');
 }
 
 * {
@@ -37,13 +37,13 @@ body {
 .dir::marker {
   display: inline-block;
   vertical-align: middle;
-    content: url("/img/folder.gif");
+    content: url("/folder.gif");
 }
 
 .page::marker {
   display: inline-block;
   vertical-align: middle;
-    content: url("/img/file.gif");
+    content: url("/file.gif");
 }
 
 #container {
