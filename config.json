@@ -1,11 +1,10 @@
 {
     "page title":   "8-Bit's Frop site",
-    "links left": {
+    "links": {
         "Home": "https://frop.prof",
-        "Main": "/"
-    },
-    "links right": {
-        "My Portfolio": "https://8bitprodigy.github.io/"
+        "Main": "/",
+        "": "SPACER",
+        "My Portfolio": "https://8bitprodigy.github.io/",
     },
     "site title":   "8-Bit's corner",
     "subtitle":     "The people may be pink, but their money is green!",
