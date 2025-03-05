@@ -1,12 +1,12 @@
 {
     "page title":   "8-Bit's Frop site",
-    "links": {
-        "Home": "https://frop.prof",
-        "Main": "/",
-        "": "SPACER",
-        "My Portfolio": "https://8bitprodigy.github.io/",
-    },
+    "links": [
+        {"label":"Home",         "link":"https://frop.prof"},
+        {"label":"Main",         "link": "/"},
+        {"label":"",             "link":"SPACER"},
+        {"label":"My Portfolio", "link": "https://8bitprodigy.github.io/"},
+    ],
     "site title":   "8-Bit's corner",
     "subtitle":     "The people may be pink, but their money is green!",
-    "footer right": ">> NOTE: nerc is not finished software, and as such, this website may not work properly. << <div class=\"spacer\" ></div>All information here is public domain/CC0/0BSD."
+    "footer right": "All information here is public domain/CC0/0BSD."
 }
