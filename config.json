@@ -1,9 +1,10 @@
 {
     "page title":   "8-Bit's Frop site",
     "links": [
-        {"label":"Home",         "link":"https://frop.prof"},
-        {"label":"Main",         "link": "/"},
-        {"label":"",             "link":"SPACER"},
+        {"label":"Home",         "link": "https://frop.prof"},
+        {"label":"Main",         "link": "https://8bit.frop.prof"},
+        {"label":"Luke",         "link": "https://luke.frop.prof"},
+        {"label":"",             "link": "SPACER"},
         {"label":"My Portfolio", "link": "https://8bitprodigy.github.io/"},
     ],
     "site title":   "8-Bit's corner",
