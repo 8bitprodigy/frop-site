@@ -24,8 +24,9 @@ body {
 }
 
 pre {
+	display: block;
 	font-family: "Liver-mono";
-	background: #666;
+	background-color: #666;
 	color: $FFF;
 }
 
