@@ -39,10 +39,12 @@ The people may be pink, but their money is green!
                 </span>
                 <span id="content" class="nerc">
 <h1>Hi-C</h1>
-<h3>A call for an Improved C</h3>
+<h3>A call for an Improved/Expanded C</h3>
 <p>(Public Domain/CC0) 2025, Chris DeBoy</p>
+<p><img src="hi-c.png" alt="hi-c.png" /></p>
 <h2>Rationale</h2>
 <p>C is great -- but it is lacking in metaprogramming features. There are preprocessor directives that enable an impressive amount of metaprogramming, but only with enough effort. Nim, on the other hand, has among the most powerful metaprogramming feature sets of any modern language. The goal is to bring them to C as part of the language proper, rather than as part of the preprocessor, but also keeping the implementation conservative and minimal.</p>
+<p>Also like Nim, this compiler would simply compile any Hi-C exclusive constructs to standard C code, but since it would only be a superset of C, all the regular C code would just &quot;fall through&quot; to the output C files, making said compiler much simpler than that of Nim's. This would also bring the benefit of being able to use any existing C library in Hi-C without use of a wrapper, though doing so to make it more idiomatic for Hi-C would certainly be better.</p>
 <h2>Additions</h2>
 <p>In order to facilitate this level of metaprogramming power, a few additions will need to be made to C's keywords and semantics.</p>
 <h3>Keywords:</h3>
@@ -110,6 +112,14 @@ Vec2 v3 = v1 + v2;
 </li>
 </ul>
 <h4>Expanded execution of compile time computations</h4>
+<ul>
+<li>
+<p>Maybe functions declared as <code>const</code> are computed at compile time?</p>
+</li>
+<li>
+<p>Macros and Transforms can contain a subset of C + Hi-C that is evaluated at compile time.</p>
+</li>
+</ul>
 
                 </span>
             </div>
