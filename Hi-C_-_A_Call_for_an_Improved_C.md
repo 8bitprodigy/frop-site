@@ -31,7 +31,7 @@ In order to facilitate this level of metaprogramming power, a few additions will
       /* Quoted Hi-C and/or standard C 
          code to be inserted in place of 
          the macro call goes here 
-  */
+      */
       `;
   }
   ```
