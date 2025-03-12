@@ -25,10 +25,13 @@ body {
 
 pre {
 	display: block;
+	padding: 8px;
+}
+
+code {
 	font-family: "Liver-mono";
 	background-color: #666;
 	color: #FFF;
-	padding: 8px;
 }
 
 .spacer {
