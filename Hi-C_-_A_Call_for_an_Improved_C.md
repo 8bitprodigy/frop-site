@@ -1,10 +1,10 @@
 # Hi-C
 
-### A call for an Improved C
+### A call for an Improved/Expanded C
 
 (Public Domain/CC0) 2025, Chris DeBoy
 
-![hi-c.png](/home/chris/Projects/frop-site/hi-c.png)
+![hi-c.png](hi-c.png)
 
 ## Rationale
 
