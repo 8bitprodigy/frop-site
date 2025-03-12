@@ -23,7 +23,7 @@ body {
     background: #737573;
 }
 
-pre {
+code {
 	display: block;
 	font-family: "Liver-mono";
 	background-color: #666;
