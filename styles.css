@@ -23,6 +23,12 @@ body {
     background: #737573;
 }
 
+code {
+	font-family: "Liver-mono";
+	background: #666;
+	color: $FFF;
+}
+
 .spacer {
     flex-grow: 1;
 }
