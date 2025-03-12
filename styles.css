@@ -23,7 +23,7 @@ body {
     background: #737573;
 }
 
-code {
+pre {
 	display: block;
 	font-family: "Liver-mono";
 	background-color: #666;
@@ -59,7 +59,7 @@ code {
     flex-direction: column;
     height:100vh;
     padding: 5px;
-    width: 1024px;
+    min-width: 1024px;
     margin: auto;
 }
 
@@ -100,6 +100,7 @@ code {
     left: 0px;
     padding-top:  20px;
     padding-left: 40px;
+    padding-right: 8px;
     min-width:200px;
     flex-shrink:0;
 }
