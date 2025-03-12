@@ -99,7 +99,7 @@ pre {
     display: block;
     left: 0px;
     padding-top:  20px;
-    padding-left: 40px;
+    padding-left: 30px;
     padding-right: 8px;
     min-width:200px;
     flex-shrink:0;
@@ -116,6 +116,7 @@ pre {
     border-color: #52aaad;
     display: block;
     flex-grow: 1;
+    width: 764px;
     padding-left: auto + 0.5px;
     padding-right: auto;
     padding-top: 40px;
