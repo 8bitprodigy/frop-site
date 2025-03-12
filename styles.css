@@ -99,7 +99,7 @@ pre {
     display: block;
     left: 0px;
     padding-top:  20px;
-    padding-left: 30px;
+    padding-left: 20px;
     padding-right: 8px;
     min-width:200px;
     flex-shrink:0;
@@ -117,8 +117,8 @@ pre {
     display: block;
     flex-grow: 1;
     width: 764px;
-    padding-left: auto + 0.5px;
-    padding-right: auto;
+    padding-left: 80.5px;
+    padding-right: 80px;
     padding-top: 40px;
     padding-bottom: 40px;
 }
