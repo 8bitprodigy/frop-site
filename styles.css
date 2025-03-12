@@ -25,6 +25,7 @@ body {
 
 pre {
 	display: block;
+	background-color: #666;
 	padding: 8px;
 }
 
