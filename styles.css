@@ -27,7 +27,8 @@ pre {
 	display: block;
 	font-family: "Liver-mono";
 	background-color: #666;
-	color: $FFF;
+	color: #FFF;
+	padding: 8px;
 }
 
 .spacer {
