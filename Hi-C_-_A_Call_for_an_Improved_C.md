@@ -4,6 +4,8 @@
 
 (Public Domain/CC0) 2025, Chris DeBoy
 
+![hi-c.png](/home/chris/Projects/frop-site/hi-c.png)
+
 ## Rationale
 
 C is great -- but it is lacking in metaprogramming features. There are preprocessor directives that enable an impressive amount of metaprogramming, but only with enough effort. Nim, on the other hand, has among the most powerful metaprogramming feature sets of any modern language. The goal is to bring them to C as part of the language proper, rather than as part of the preprocessor, but also keeping the implementation conservative and minimal. 
@@ -76,3 +78,7 @@ In order to facilitate this level of metaprogramming power, a few additions will
 - *Keyword Overloading (maybe)* - Just floating this one. May be too powerful for prime time.
 
 #### Expanded execution of compile time computations
+
+- Maybe functions declared as `const` are computed at compile time?
+
+- Macros and Transforms can contain a subset of C + Hi-C that is evaluated at compile time.
