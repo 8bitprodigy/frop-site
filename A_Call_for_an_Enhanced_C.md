@@ -1,6 +1,6 @@
 # Hi-C
 
-### A call for an Improved/Expanded C
+### A call for an Enhanced C
 
 (Public Domain/CC0) 2025, Chris DeBoy
 
@@ -10,13 +10,11 @@
 
 Bring the powerful metaprogramming features of Nim to C.
 
-
-
 C is great -- but it is lacking in metaprogramming features. There are preprocessor directives that enable an impressive amount of metaprogramming, but only with enough effort. Nim, on the other hand, has among the most powerful metaprogramming feature sets of any modern language. The goal is to bring them to C as part of the language proper, rather than as part of the preprocessor, but also keeping the implementation conservative and minimal. 
 
 Also like Nim, this compiler would simply compile any Hi-C exclusive constructs to standard C code, but since it would only be a superset of C, all the regular C code would just "fall through" to the output C files, making said compiler much simpler than that of Nim's. This would also bring the benefit of being able to use any existing C library in Hi-C without use of a wrapper, though wrapping it to make it more idiomatic for Hi-C would certainly be better.
 
-The ideal is to create a language that would allow users to create the kinds of constructs built in to C++ without having to implement them explicitly, making it the C for people who love C++ and the C++ for people who hate C++.
+The ideal is to create a language that would allow users to create the kinds of constructs built in to C++ without having to implement them explicitly, making it the C for people who love C++ and the C++ for people who hate C++. Hi-C code should compile to a subset of C, perhaps ANSI C, to ensure maximum portability.
 
 ## Additions
 
