@@ -43,15 +43,34 @@ The people may be pink, but their money is green!
 <p>(Public Domain/CC0) 2025, Chris DeBoy</p>
 <p><img src="hi-c.png" alt="hi-c.png" /></p>
 <h2>Rationale</h2>
+<p>Bring the powerful metaprogramming features of Nim to C.</p>
 <p>C is great -- but it is lacking in metaprogramming features. There are preprocessor directives that enable an impressive amount of metaprogramming, but only with enough effort. Nim, on the other hand, has among the most powerful metaprogramming feature sets of any modern language. The goal is to bring them to C as part of the language proper, rather than as part of the preprocessor, but also keeping the implementation conservative and minimal.</p>
 <p>Also like Nim, this compiler would simply compile any Hi-C exclusive constructs to standard C code, but since it would only be a superset of C, all the regular C code would just &quot;fall through&quot; to the output C files, making said compiler much simpler than that of Nim's. This would also bring the benefit of being able to use any existing C library in Hi-C without use of a wrapper, though wrapping it to make it more idiomatic for Hi-C would certainly be better.</p>
+<p>The ideal is to create a language that would allow users to create the kinds of constructs built in to C++ without having to implement them explicitly, making it the C for people who love C++ and the C++ for people who hate C++.</p>
 <h2>Additions</h2>
 <p>In order to facilitate this level of metaprogramming power, a few additions will need to be made to C's keywords and semantics.</p>
 <h3>Keywords:</h3>
 <ul>
 <li>
-<p><code>macro</code> - Provides deep AST manipulation.
-Syntax:</p>
+<p><code>transform</code> - Allows syntax extensions by rewriting code patterns at compile time. This is run in the first metaprogramming pass.</p>
+<p>Syntax:</p>
+<pre><code class="language-c">transform [CODE PATTERN] IDENTIFIER
+{
+    /* Hi-C code here if necessary to 
+       be computed before transformation 
+    */
+    return `
+    /* Quoted Hi-C and/or standard C 
+       code to be inserted in place of 
+       the pattern goes here 
+    */
+    `;
+}
+</code></pre>
+</li>
+<li>
+<p><code>macro</code> - Provides deep AST introspection and manipulation. This is run in the second metaprogramming pass.</p>
+<p>Syntax:</p>
 <pre><code class="language-c">macro IDENTIFIER(ARGS...)
 {
     /* Hi-C code here if necessary to 
@@ -61,22 +80,6 @@ Syntax:</p>
     /* Quoted Hi-C and/or standard C 
        code to be inserted in place of 
        the macro call goes here 
-    */
-    `;
-}
-</code></pre>
-</li>
-<li>
-<p><code>transform</code> - Allows syntax extensions by rewriting code patterns at compile time.</p>
-<pre><code class="language-c">transform IDENTIFIER [CODE PATTERN]
-{
-    /* Hi-C code here if necessary to 
-       be computed before transformation 
-    */
-    return `
-    /* Quoted Hi-C and/or standard C 
-       code to be inserted in place of 
-       the pattern goes here 
     */
     `;
 }

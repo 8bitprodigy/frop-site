@@ -8,9 +8,15 @@
 
 ## Rationale
 
+Bring the powerful metaprogramming features of Nim to C.
+
+
+
 C is great -- but it is lacking in metaprogramming features. There are preprocessor directives that enable an impressive amount of metaprogramming, but only with enough effort. Nim, on the other hand, has among the most powerful metaprogramming feature sets of any modern language. The goal is to bring them to C as part of the language proper, rather than as part of the preprocessor, but also keeping the implementation conservative and minimal. 
 
 Also like Nim, this compiler would simply compile any Hi-C exclusive constructs to standard C code, but since it would only be a superset of C, all the regular C code would just "fall through" to the output C files, making said compiler much simpler than that of Nim's. This would also bring the benefit of being able to use any existing C library in Hi-C without use of a wrapper, though wrapping it to make it more idiomatic for Hi-C would certainly be better.
+
+The ideal is to create a language that would allow users to create the kinds of constructs built in to C++ without having to implement them explicitly, making it the C for people who love C++ and the C++ for people who hate C++.
 
 ## Additions
 
@@ -18,7 +24,27 @@ In order to facilitate this level of metaprogramming power, a few additions will
 
 ### Keywords:
 
-- `macro` - Provides deep AST manipulation.
+- `transform` - Allows syntax extensions by rewriting code patterns at compile time. This is run in the first metaprogramming pass.
+  
+  Syntax:
+  
+  ```c
+  transform [CODE PATTERN] IDENTIFIER
+  {
+      /* Hi-C code here if necessary to 
+         be computed before transformation 
+      */
+      return `
+      /* Quoted Hi-C and/or standard C 
+         code to be inserted in place of 
+         the pattern goes here 
+      */
+      `;
+  }
+  ```
+
+- `macro` - Provides deep AST introspection and manipulation. This is run in the second metaprogramming pass.
+  
   Syntax:
   
   ```c
@@ -31,23 +57,6 @@ In order to facilitate this level of metaprogramming power, a few additions will
       /* Quoted Hi-C and/or standard C 
          code to be inserted in place of 
          the macro call goes here 
-      */
-      `;
-  }
-  ```
-
-- `transform` - Allows syntax extensions by rewriting code patterns at compile time.
-  
-  ```c
-  transform IDENTIFIER [CODE PATTERN]
-  {
-      /* Hi-C code here if necessary to 
-         be computed before transformation 
-      */
-      return `
-      /* Quoted Hi-C and/or standard C 
-         code to be inserted in place of 
-         the pattern goes here 
       */
       `;
   }
