@@ -115,9 +115,10 @@ code {
     font-size: 14pt;
     display: list-item;
     align-items: center;
+    padding-left: 8px;
 }
 #sidebar ul {
-    padding-left: 32px;
+    padding-left: 24px;
 }
 
 #content {
