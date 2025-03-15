@@ -146,6 +146,12 @@ code {
     height: auto;
     margin: auto;
 }
+#content * ul {
+    list-style-type: disc;
+}
+#content * li {
+    display: list-item;
+}
 
 #footer {
     background-color: #8c8ace;
