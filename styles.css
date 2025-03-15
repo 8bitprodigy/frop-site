@@ -112,10 +112,12 @@ code {
     flex-shrink:0;
 }
 #sidebar * li {
-    padding-left: 8px;
     font-size: 14pt;
     display: list-item;
     align-items: center;
+}
+#sidebar ul {
+    padding-left: 32px;
 }
 
 #content {
