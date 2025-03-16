@@ -1,6 +1,11 @@
 Free markets are the epitome of individual rights and freedom.
 
 Free markets only occur when all parties of a transaction are participating voluntarily.
+Society is able to best flourish when each individual is free to exercise their will through the pursuit of their own rational self-interest.
+
+
+
+# Definitions:
 
 ### Capitalism
 
@@ -59,6 +64,11 @@ The Objectivist ethics holds that *human* good does not require human sacrific
   - Customers will take their money to businesses who they believe best provides value for their needs
   
   - Businesses are naturally incentivised to produce enough product for demand for as high a quality and as low a price as possible
+
+- The cost of aggression far exceeds the profit that can be gained
+  
+  - 
+    
 
 ## Monopolies
 
@@ -168,4 +178,22 @@ The Objectivist ethics holds that *human* good does not require human sacrific
   
   - The free market will always provide better services than the gov't since the gov't is guaranteed income through taxation and printing more money - see profit incentive
   
-  - 
+  - If anything, has incentives to not improve things, and if anything, make things worse, so as to ensure there are issues for politicians to run on.
+    
+    - e.g. "Teachers are underpaid! Vote for me and I'll put more money into education!" They get elected and more money goes into the board of ed, where it is absorbed into an increasingly bloated administration.
+
+- People think it's a human rights organization -- but it isn't:
+  
+  - If anything, it operates much like a mob
+    
+    - Individuals are forced to pay into it for "protection"
+    
+    - If they don't pay into it, the gov't aggresses upon them
+    
+    - Participation is compulsory with no way to unsubscribe
+
+- Since its income is guaranteed through coerscion it has no profit incentive
+  
+  - With no profit incentive, there's no possible fail state
+    
+    - With no possible fail state, there's no incentive to improve
