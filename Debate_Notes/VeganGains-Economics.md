@@ -1,3 +1,9 @@
+# Debate notes: VeganGains - Economics
+
+(Public Domain/CC0) 2025 Chris DeBoy
+
+# Opening Statement:
+
 Free markets are the epitome of individual rights and freedom.
 
 Free markets only occur when all parties of a transaction are participating voluntarily. If at any point coercion is involved, as a matter of definition, it is not free.
@@ -21,6 +27,8 @@ Planned economies, on the other hand, will ultimately lead to failure due to com
 - **Corruption and Rent-Seeking** - the concentration of economic decision-making power creates opportunities for corruption and political favoritism
 
 - **Misinformation** - State agents, in orer to create the appearance of meeting targets to avoid punishment will manipulate data, further obfuscating problems
+
+I intend to convince everyone that socialists are the creationists of economics, and that those who advocate for mixed economies are like the creationists who say "Well, I believe in adaptation/*micro*-evolution, but not *macro*-evolution..."
 
 
 
@@ -158,11 +166,26 @@ The Objectivist ethics holds that *human* good does not require human sacrific
 
 - **Security**
   
-  - Private Militaries
+  - Private Military Corps
     
     - Private militaries have a track record of being more loyal, as they won't make money from anyone if it's known they can be bought out
+    - Are more efficient
+      - Cost less
+      - Fewer deaths
   
   - Private Police
+    
+    - Like private military corps, are more efficient
+    
+    - Public police have a terrible track record of wrongful deaths
+      
+      - Private individuals are far more responsible with firearms
+  
+  - Personal arms
+    
+    - Firearms stop far more crimes each year than are used to commit them
+    
+    - Criminals are less likely to aggress on people they know could be armed
 
 - **Welfare**
   
