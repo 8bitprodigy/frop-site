@@ -1,7 +1,26 @@
 Free markets are the epitome of individual rights and freedom.
 
-Free markets only occur when all parties of a transaction are participating voluntarily.
-Society is able to best flourish when each individual is free to exercise their will through the pursuit of their own rational self-interest.
+Free markets only occur when all parties of a transaction are participating voluntarily. If at any point coercion is involved, as a matter of definition, it is not free.
+
+Society is able to best flourish when each individual is free to exercise their will through the pursuit of their own rational self-interest. Since every individual has their own unique set of values, needs, and desires, only they can best determine what actions they can take to best reach their ends. Left to their own devices, in pursuit of rational self-interest, the individual seeks the path they believe will best lead them to long-term survival and prosperity, not short-term immediate gratification. A rational actor will recognize that their long-term interests are best served creating value, respecting the rights of others, and forming mutually beneficial relationships
+
+Planned economies, on the other hand, will ultimately lead to failure due to compounding inefficiencies inherent to them:
+
+- **Knowledge problem** - central planners lack all the local and specialized knowledge that millions of individuals have, and cannot account for local needs
+
+- **Price Calculation problem** - Without emergent prices to indicate where consumer demand is focused, there's no way to determine where to most efficiently allocate resources
+
+- **Incentive Problem** - central planners are rewarded for meeting numerical targets, not consumer needs
+
+- **Innovation Deficits** - central planning has little incentive for innovation and risk-taking, as bureaurocratic approval is necessary and failure is often punished.
+
+- **Resource Misallocation** - without price signals, resources flow to politically beneficial ends, rather than their most productive outlets
+
+- **Grey & Black Markets** - inefficient official allocation incentivises the formation of illegal parallel markets that operate outside of planning -- with black markets operating by immoral means
+
+- **Corruption and Rent-Seeking** - the concentration of economic decision-making power creates opportunities for corruption and political favoritism
+
+- **Misinformation** - State agents, in orer to create the appearance of meeting targets to avoid punishment will manipulate data, further obfuscating problems
 
 
 
@@ -32,6 +51,38 @@ The Objectivist ethics proudly advocates and *upholds rational selfishness*—w
 The Objectivist ethics holds that *human* good does not require human sacrifices and cannot be achieved by the sacrifice of anyone to anyone. It holds that the *rational* interests of men do not clash—that there is no conflict of interests among men who do not desire the unearned, who do not make sacrifices nor accept them, who deal with one another as *traders*, giving value for value.
 
 # BUT MUH...
+
+## Big Businesses
+
+- Larger businesses are typically made possible through state action such as regulations, subsidies, and corporate welfare.
+
+- Large businesses are disadvantageous in unregulated markets
+  
+  - Internal pricing calculation problem
+    
+    - More departments to facilitate internal needs means with no pricing model to determine where to best allocate resources
+  
+  - Cost more to operate - more employees to pay, more assets to maintain, and more liabilities
+  
+  - Dunbar's number comes into effect
+  
+  - More layers of bureaurocracy to go through in order to change course to meet market demands
+  
+  - More assets to either liquidate or retool if necessary
+  
+  - Harder to ensure incompetent people are kept out -- Dilbert Principle comes into effect
+
+- Small businesses are more agile and better able to meet changing market demands
+  
+  - Smaller number of people to run updated plans by
+  
+  - Many operations are outsourced meaning internal prices are known
+  
+  - Many operations are outsourced making it easier to change plans by severing ties with those businesses
+  
+  - Far lower costs to operate
+  
+  - With less assets, there is far more drive to create a product that will bring in money
 
 ## Predatory Pricing
 
@@ -68,7 +119,6 @@ The Objectivist ethics holds that *human* good does not require human sacrific
 - The cost of aggression far exceeds the profit that can be gained
   
   - 
-    
 
 ## Monopolies
 
@@ -139,6 +189,8 @@ The Objectivist ethics holds that *human* good does not require human sacrific
   - Why do they eventually decide to lower prices when inflation goes down?
 
 ## Regulations
+
+- Operate more as monopoly protections by artificially raising the barrier to entry in order to keep out competition
 
 - **Price Caps**
   
