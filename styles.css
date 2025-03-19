@@ -42,9 +42,8 @@ code {
 }
 
 .nav {
+    display: flex;
     width: 100%;
-    padding: 0px;
-    margin: 0px;
 }
 
 .nerc {
