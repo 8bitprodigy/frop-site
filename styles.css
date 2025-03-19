@@ -38,12 +38,8 @@ code {
 }
 
 .spacer {
-    flex-grow: 1;
-}
-
-.nav {
     display: flex;
-    width: 100%;
+    flex-grow: 1;
 }
 
 .nerc {
