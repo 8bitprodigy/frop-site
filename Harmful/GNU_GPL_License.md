@@ -1,4 +1,4 @@
-# GNU GPL Licenses suck.
+## Copyleft Licenses suck.
 
 ### Also, I ain't got time to read all that shit.
 
