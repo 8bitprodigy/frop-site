@@ -1,4 +1,4 @@
-## Copyleft Licenses suck.
+## Copyleftapplication Licenses suck.
 
 ### Also, I ain't got time to read all that shit.
 
