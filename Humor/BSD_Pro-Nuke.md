@@ -2,7 +2,9 @@
 
 ## Rationale:
 
-This is a license designed with the explicit intent to incentivise getting this code to be used in nuclear energy applications, by placing the code under a copyleft license, the terms of which are rendered void if the code is ever used in a nuclear setting.
+This is a license designed with the explicit intent to incentivise getting code placed under this license to be used in nuclear energy applications, as it places the code under copyleft restrictions, which are rendered void if the code is ever used in a nuclear setting.
+
+
 That, and to poke fun at so-called "FOSS" licenses that include an anti-nuclear clause.
 
 ## License Text:
