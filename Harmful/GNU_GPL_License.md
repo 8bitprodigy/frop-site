@@ -1,4 +1,4 @@
-## Copyleftapplication Licenses suck.
+## Copyleft Licenses suck.
 
 ### Also, I ain't got time to read all that shit.
 
@@ -16,3 +16,7 @@ Your license is only as good as you are able to enforce it, meaning you have to 
 Also, it's gonna be really hard to prove someone is in violation without first seeing their code. Take WinAmp, for example, which was in the past year open sourced, and it turns out they had been using quite a bit of GPL code for years as a closed-source project.
 
 On top of this, code published under permissive licenses is going to be more beneficial to small upstarts, as they won't be forced to release any changes they make, allowing any competitive advantage they may have created to remain secret, at least for however long it takes for their innovation to be reverse-engineered, so they at least have a first-mover advantage.
+
+## > If everyone owns it, nobody does
+
+Supporters of the GPL may sometimes say that since it requires you share the code, should you choose to distribute binaries incorporating your changes, that *everyone* owns the code. The problem with this is that if everyone owns the code, then nobody does. 

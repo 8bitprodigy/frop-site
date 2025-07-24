@@ -121,7 +121,7 @@ Macros and transforms are able to return chunks of Hi-C and the full set of the 
 
 #### Expanded execution of compile time computations
 
-- Maybe functions declared as `const` are computed at compile time?
+- `constexpr` functions.
 
 - Macros and Transforms can contain a subset of C + Hi-C that is evaluated at compile time.
 
