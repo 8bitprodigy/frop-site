@@ -52,18 +52,18 @@ The people may be pink, but their money is green!
                 </span>
                 <span class="nerc" id="content">
 <h1>A Call for an Enhanced C</h1>
-<h1>Hi-C</h1>
-<h3>A call for an Enhanced C</h3>
+<h1 id="hi-c"><a href="#hi-c" class="anchor" aria-hidden="true">🔗</a>Hi-C</h1>
+<h3 id="a-call-for-an-enhanced-c"><a href="#a-call-for-an-enhanced-c" class="anchor" aria-hidden="true">🔗</a>A call for an Enhanced C</h3>
 <p>(Public Domain/CC0) 2025, Chris DeBoy</p>
 <p><img src="hi-c.png" alt="hi-c.png" /></p>
-<h2>Rationale</h2>
+<h2 id="rationale"><a href="#rationale" class="anchor" aria-hidden="true">🔗</a>Rationale</h2>
 <p>Bring the powerful metaprogramming features of Nim to C.</p>
 <p>C is great -- but it is lacking in metaprogramming features. There are preprocessor directives that enable an impressive amount of metaprogramming, but only with enough effort. Nim, on the other hand, has among the most powerful metaprogramming feature sets of any modern language. The goal is to bring them to C as part of the language proper, rather than as part of the preprocessor, but also keeping the implementation conservative and minimal.</p>
 <p>Also like Nim, this compiler would simply compile any Hi-C exclusive constructs to standard C code, but since it would only be a superset of C, all the regular C code would just &quot;fall through&quot; to the output C files, making said compiler much simpler than that of Nim's. This would also bring the benefit of being able to use any existing C library in Hi-C without use of a wrapper, though wrapping it to make it more idiomatic for Hi-C would certainly be better.</p>
 <p>The ideal is to create a language that would allow users to create the kinds of constructs built in to C++ without having to implement them explicitly, making it the C for people who love C++ and the C++ for people who hate C++. Hi-C code should compile to a subset of C, perhaps ANSI C, to ensure maximum portability.</p>
-<h2>Additions</h2>
+<h2 id="additions"><a href="#additions" class="anchor" aria-hidden="true">🔗</a>Additions</h2>
 <p>In order to facilitate this level of metaprogramming power, a few additions will need to be made to C's keywords and semantics.</p>
-<h3>Keywords:</h3>
+<h3 id="keywords"><a href="#keywords" class="anchor" aria-hidden="true">🔗</a>Keywords:</h3>
 <ul>
 <li>
 <p><code>transform</code> - Allows syntax extensions by rewriting code patterns at compile time. This is run in the first metaprogramming pass.</p>
@@ -103,10 +103,10 @@ The people may be pink, but their money is green!
 <p>A variation of <code>typeof()</code> that returns structured type information, including base type, function pointer detection, and AST representation.</p>
 </li>
 </ul>
-<h3>Semantics:</h3>
-<h4>&quot;Quoted&quot; code using backticks(`) for macros and transforms</h4>
+<h3 id="semantics"><a href="#semantics" class="anchor" aria-hidden="true">🔗</a>Semantics:</h3>
+<h4 id="quot-quoted-quot-code-using-backticks-for-macros-and-transforms"><a href="#quot-quoted-quot-code-using-backticks-for-macros-and-transforms" class="anchor" aria-hidden="true">🔗</a>&quot;Quoted&quot; code using backticks(`) for macros and transforms</h4>
 <p>Macros and transforms are able to return chunks of Hi-C and the full set of the C language by wrapping them in single backticks. This code will be inserted where the macro is declared or transform pattern is found, and then expanded into standard C in a later pass.</p>
-<h4>Argument/Operator/Keyword(maybe) overloading:</h4>
+<h4 id="argument-operator-keyword-maybe-overloading"><a href="#argument-operator-keyword-maybe-overloading" class="anchor" aria-hidden="true">🔗</a>Argument/Operator/Keyword(maybe) overloading:</h4>
 <ul>
 <li>
 <p><em>Argument Overloading</em> - Allows multiple functions with the same symbol to be declared, so long as their signature and/or return type differ.
@@ -157,7 +157,7 @@ Vec2 v3 = v1 + v2;
 <p><em>Keyword Overloading (maybe)</em> - Just floating this one. May be too powerful for prime time.</p>
 </li>
 </ul>
-<h4>Expanded execution of compile time computations</h4>
+<h4 id="expanded-execution-of-compile-time-computations"><a href="#expanded-execution-of-compile-time-computations" class="anchor" aria-hidden="true">🔗</a>Expanded execution of compile time computations</h4>
 <ul>
 <li>
 <p><code>constexpr</code> functions.</p>
@@ -166,7 +166,7 @@ Vec2 v3 = v1 + v2;
 <p>Macros and Transforms can contain a subset of C + Hi-C that is evaluated at compile time.</p>
 </li>
 </ul>
-<h3>Other possible additions</h3>
+<h3 id="other-possible-additions"><a href="#other-possible-additions" class="anchor" aria-hidden="true">🔗</a>Other possible additions</h3>
 <ul>
 <li>
 <p>More straightforward, fixed-width types as first class, i.e. <code>int8</code>, <code>uint16</code>, <code>float64</code>, etc, which would expand to their C counterparts in <code>stdint.h</code> or whichever library defines them.</p>
