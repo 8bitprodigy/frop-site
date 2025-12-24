@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+    <head> <!-- yes, please. -->
+        <title>
+8-Bit's Frop site
+        </title>
+        <style>
+            @import url("styles.css");
+
+@import url("/styles.css");
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div class="nerc" id="links">
+<a href="https://frop.prof">Home</a>&nbsp;|&nbsp;<a href="https://8bit.frop.prof">Main</a>&nbsp;|&nbsp;<a href="https://luke.frop.prof">Luke</a><span class="spacer" ></span><a href="https://8bitprodigy.github.io/">My Portfolio</a>
+            </div>
+            <div class="nerc" id="header">
+                <h1>
+8-Bit's corner
+                </h1>
+                <h2>
+The people may be pink, but their money is green!
+                </h2>
+            </div>
+            <div id="body">
+                <span class="nerc" id="sidebar">
+<ul>
+<li class="dir"><a href="/">Main</a>
+<ul>
+<li class="dir">Debate Notes<ul>
+<li class="dir">Leophilius-Labor Theory of Value<ul>
+			<li class="page"><a href="/Debate_Notes/Leophilius-Labor_Theory_of_Value/Debate_Notes.htm">Debate Notes</a></li>
+			<li class="page"><a href="/Debate_Notes/Leophilius-Labor_Theory_of_Value/Negative_Opening.htm">Negative Opening</a></li>
+			<li class="page"><a href="/Debate_Notes/Leophilius-Labor_Theory_of_Value/Negative_Closting_Statement.htm">Negative Closting Statement</a></li>
+			<li class="page"><a href="/Debate_Notes/Leophilius-Labor_Theory_of_Value/Cross-examination_questions.htm">Cross-examination questions</a></li>
+</ul>
+</li>		<li class="page"><a href="/Debate_Notes/VeganGains-Economics.htm">VeganGains-Economics</a></li>
+</ul>
+</li><li class="dir">Software<ul>
+<li class="dir"><a href="/Software/Kolibri_Engine/">Kolibri Engine</a>
+<ul>
+</ul>
+</li><li class="dir"><a href="/Software/nerc/">>> nerc <<</a>
+<ul>
+</ul>
+</li></ul>
+</li><li class="dir"><a href="/Harmful/">Harmful</a>
+<ul>
+		<li class="page"><a href="/Harmful/GNU_GPL_License.htm">GNU GPL License</a></li>
+		<li class="page"><a href="/Harmful/SystemD.htm">SystemD</a></li>
+</ul>
+</li><li class="dir">Humor<ul>
+		<li class="page"><a href="/Humor/BSD_Pro-Nuke.htm">BSD Pro-Nuke</a></li>
+</ul>
+</li>	<li class="page"><a href="/A_Call_for_an_Enhanced_C.htm">A Call for an Enhanced C</a></li>
+</ul>
+</li>
+</ul>
+                </span>
+                <span class="nerc" id="content">
+<h1 id="a-href-https-github-com-8bitprodigy-nerc-nerc-a"><a href="#a-href-https-github-com-8bitprodigy-nerc-nerc-a" class="anchor" aria-hidden="true">🔗</a><a href="https://github.com/8bitprodigy/nerc">nerc</a></h1>
+<p>Anti-web anti-framework in Nim.</p>
+<h2 id="rationale"><a href="#rationale" class="anchor" aria-hidden="true">🔗</a>Rationale</h2>
+<p>Too many web frameworks are written in slow, heavy, bloated interpreted languages, reflective of most of web technologies, so this is an <em>anti</em>-web <em>anti</em>-framework written in a fast, lightweight, and <em>nim</em>ble compiled language.</p>
+<h2 id="function"><a href="#function" class="anchor" aria-hidden="true">🔗</a>Function</h2>
+<p>Converts markdown files into html files on a directory basis.</p>
+<h2 id="usage"><a href="#usage" class="anchor" aria-hidden="true">🔗</a>Usage</h2>
+<p>Navigate to your directory you wish to be the root of your website and run:</p>
+<pre><code>nerc
+</code></pre>
+<p>Then upload the contents of that directory to the root of your website's hosting directory.</p>
+<h3 id="things-to-note"><a href="#things-to-note" class="anchor" aria-hidden="true">🔗</a>Things to note</h3>
+<ul>
+<li>
+<p><code>readme.md</code>(case insensitive) files will become <code>index.htm</code> files so you can use github hosting for your website, and people visiting the repo will get more or less the same experience.</p>
+</li>
+<li>
+<p>File and directory names become page titles with underscores turned into spaces, so <code>My_Portfolio.md</code> will be given the page name <code>My Portfolio</code> when linked in the sidebar and after the site title in the browser titebar/tab.</p>
+</li>
+<li>
+<p>Files and directories starting with a <code>.</code> or <code>_</code> will be ignored for linkage to ensure directories like <code>.git/</code> don't get scanned.</p>
+</li>
+<li>
+<p>Directories that don't contain a <code>readme.md</code> will not be linkified in the sidebar, but any <code>.md</code> documents they contain will be.</p>
+</li>
+<li>
+<p>You can add your own html pages you made, but they will only be linkified if they end in <code>.html</code>.</p>
+</li>
+</ul>
+<h2 id="options"><a href="#options" class="anchor" aria-hidden="true">🔗</a>Options</h2>
+<p>Options can be overridden on a per-directory basis. Each directory can have its own <code>config.json</code>, <code>styles.css</code>, and <code>template.html</code>, overriding one or more of a parent directory's  settings.</p>
+<h3 id="config-json"><a href="#config-json" class="anchor" aria-hidden="true">🔗</a>config.json</h3>
+<p>You'll likely first wish to create your own <code>config.json</code> file to override the default settings built in to <code>nerc</code>.
+This is a list of the various config options:</p>
+<p>| <strong>Key</strong>          | <strong>Value Type</strong>                                                                                                                                                       | <strong>Description</strong>                                                                                                                                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>&quot;index&quot;</code>        | string (default: <code>&quot;$readme&quot;</code>): <code>&quot;newest&quot;</code> to use the newest created file, to select a specific file name (excluding file extension), make the first character a <code>$</code>. | Sets what document gets converted into <code>index.htm</code>.                                                                                                                                                            |
+| <code>&quot;sort&quot;</code>         | string (default: <code>&quot;alphabetical&quot;</code>): <code>&quot;alphabetical&quot;</code> to sort alphabetically, <code>&quot;newest&quot;</code> to sort by newest                                                            | Sets how page links are sorted in the sidebar.                                                                                                                                                                 |
+| <code>&quot;page title&quot;</code>   | string                                                                                                                                                               | Sets the page's title tag (in the browser window titlebar/tab).                                                                                                                                                |
+| <code>&quot;links&quot;</code>        | array of JSON objects: <code>{&quot;label&quot;: [string to hyperlink], &quot;link&quot;:[string of URL to link to]}</code>                                                                         | Sets the links that appear at the top of the page. Spacers can be inserted by inserting the following JSON object: <code>{&quot;label&quot;: &quot;&quot;, &quot;link&quot;: &quot;SPACER&quot;}</code>                                                           |
+| <code>&quot;site title&quot;</code>   | string                                                                                                                                                               | Sets the title at the top of each page, below the links row.                                                                                                                                                   |
+| <code>&quot;subtitle&quot;</code>     | string                                                                                                                                                               | Sets the subtitle for the site that appears next to the title.                                                                                                                                                 |
+| <code>&quot;upper nav&quot;</code>    | bool (default: <code>false</code>)                                                                                                                                              | If true inserts previous/next navigation links at the top of the document to navigate to other documents within the current directory                                                                          |
+| <code>&quot;doc title&quot;</code>    | bool (default: <code>true</code>)                                                                                                                                               | If true, inserts the document's formatted file name (underscores and file extension removed) into the top of the document in a <code>&lt;h1&gt;</code> tag.                                                                     |
+| <code>&quot;lower nav&quot;</code>    | bool (default: <code>false</code>)                                                                                                                                              | If true inserts previous/next navigation links at the bottom of the document to navigate to other documents within the current directory                                                                       |
+| <code>&quot;footer right&quot;</code> | string                                                                                                                                                               | Sets the text string that is inserted into the footer at the bottom of the page on the right. You can insert HTML into this portion for formatting effects, or if you'd like to add a search bar or something. |</p>
+<p>Only defined config options will be overridden, so any settings not defined in a directory's <code>config.json</code> file will be inherited either from their parent's directory, or from the default settings defined in <code>nerc</code>.</p>
+<h3 id="styles-css"><a href="#styles-css" class="anchor" aria-hidden="true">🔗</a>styles.css</h3>
+<p>If one is not present in the root directory, a <code>styles.css</code> file will be generated and linked to by all pages in the directory and any child directories. If you wish to define your own style for your site, it is recommended to allow <code>nerc</code> to generate the <code>styles.css</code> file and modify that to set global style settings.</p>
+<p>Styles are overridden by including each <code>styles.css</code> along the path to whatever page is being generated, so if a page is in <code>/places/America/Maryland/</code>, and <code>/</code>, <code>America</code>, and <code>Maryland</code> each has their own style, they'd be included as such:</p>
+<pre><code class="language-html">...
+&lt;style&gt; 
+    @import url(&quot;/styles.css&quot;);
+    @import url(&quot;/places/America/styles.css&quot;);
+    @import url(&quot;/places/America/Maryland/styles.css&quot;);
+&lt;/style&gt;
+...
+</code></pre>
+<p>So as to allow individual styles to be overridden on a per-directory basis.
+Here are a list of classes and IDs which can be styled:</p>
+<p>| <strong>Class/ID</strong> | ** Description**                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------- |
+| <code>.spacer</code>    | Styles spacers used to separate links and the left and right text in the footer.            |
+| <code>.nerc</code>      | Styles shared by every element that generated content gets inserted to in the visible page. |
+| <code>#container</code> | Element containing all the elements of the page.                                            |
+| <code>#links</code>     | Element containing links at the top of the page.                                            |
+| <code>#header</code>    | Element containing the Page Title and Subtitle.                                             |
+| <code>#body</code>      | Element containing Sidebar and Content.                                                     |
+| <code>#sidebar</code>   | Element containing an unordered list linking to different pages and directories.            |
+| <code>#content</code>   | Element containing the contents of the document, rendered as HTML                           |
+| <code>#foote</code>     | Element containing the footer contents.                                                     |</p>
+<h3 id="template-html"><a href="#template-html" class="anchor" aria-hidden="true">🔗</a>template.html</h3>
+<p>Like <code>config.json</code>, pages in a directory will use the last defined template up the chain of directories back to the root. Unlike <code>config.json</code> and <code>styles.css</code>,  however, <code>template.html</code> overrides the whole page, so if you wish to override it, you'll have to define the whole page layout.
+In order for content to be inserted into the page during generation, you'll need to declare the following tokens in your template:</p>
+<p>| <strong>Tag</strong>               | <strong>Description</strong>                                                                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| <code>&lt;!--page title--&gt;</code>   | Inserts the string defined by <code>&quot;page title&quot;</code> in <code>config.json</code>.                                                                    |
+| <code>&lt;!--styles--&gt;</code>       | Inserts the chain of <code>styles.css</code> files that apply to the current directory.                                                      |
+| <code>&lt;!--links--&gt;</code>        | Inserts a series of <code>&lt;a&gt;</code> tags and spacers defined by <code>&quot;links&quot;</code> in <code>config.json</code>.                                                 |
+| <code>&lt;!--site title--&gt;</code>   | Inserts the string defined by <code>&quot;site title&quot;</code> in <code>config.json</code>.                                                                    |
+| <code>&lt;!--subtitle--&gt;</code>     | Inserts the string defined by <code>&quot;subtitle&quot;</code> in <code>config.json</code>.                                                                      |
+| <code>&lt;!--sidebar--&gt;</code>      | Inserts an unordered list representing the directory structure of the website and all its generated/discovered pages/directories. |
+| <code>&lt;!--content--&gt;</code>      | Inserts the contents of the markdown document, rendered as HMTL elements.                                                         |
+| <code>&lt;!--footer left--&gt;</code>  | Inserts the string defined by &quot;footer left&quot; in <code>config.json</code>.                                                                     |
+| <code>&lt;!--footer right--&gt;</code> | Inserts the string defined by &quot;footer right&quot; in <code>config.json</code>.                                                                    |</p>
+<h2 id="building"><a href="#building" class="anchor" aria-hidden="true">🔗</a>Building</h2>
+<p>Be sure to have <a href="https://github.com/soasme/nim-markdown">Nim-markdown</a> installed first:</p>
+<pre><code class="language-shell">nimble install markdown
+</code></pre>
+<p>Then:</p>
+<pre><code class="language-shell">git clone https://github.com/8bitprodigy/nerc 
+cd nerc
+nimble build
+</code></pre>
+<h2 id=""><a href="#" class="anchor" aria-hidden="true">🔗</a></h2>
+<h2 id="installation"><a href="#installation" class="anchor" aria-hidden="true">🔗</a>Installation</h2>
+<pre><code class="language-shell">install nerc /usr/local/bin
+</code></pre>
+<p>Or:</p>
+<pre><code class="language-shell">install nerc ~/.local/bin
+</code></pre>
+<h2 id=""><a href="#" class="anchor" aria-hidden="true">🔗</a></h2>
+<h2 id="license"><a href="#license" class="anchor" aria-hidden="true">🔗</a>License:</h2>
+<p>This code is dedicated to the public domain, but is also made available under the terms of the 0-clause BSD license, as some jurisdictions do not recognize the public domain.</p>
+<p>The terms of the 0-clause BSD license are thus:Copyright (C) 2025 Christopher DeBoy <a href="mailto:chrisxdeboy@gmail.com">chrisxdeboy@gmail.com</a></p>
+<p>Permission to use, copy, modify, and/or distribute this software for<br />
+any purpose with or without fee is hereby granted.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL<br />
+WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES<br />
+OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE<br />
+FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY<br />
+DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN<br />
+AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT<br />
+OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</p>
+
+                </span>
+            </div>
+            <div class="nerc" id="footer">
+This page was generated by&nbsp;<a href="https://github.com/8bitprodigy/nerc">nerc</a>.
+                <span class="spacer" ></span>
+All information here is public domain/CC0/0BSD.
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,969 @@
+<!doctype html>
+<html>
+    <head> <!-- yes, please. -->
+        <title>
+8-Bit's Frop site
+        </title>
+        <style>
+            @import url("styles.css");
+
+@import url("/styles.css");
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <div class="nerc" id="links">
+<a href="https://frop.prof">Home</a>&nbsp;|&nbsp;<a href="https://8bit.frop.prof">Main</a>&nbsp;|&nbsp;<a href="https://luke.frop.prof">Luke</a><span class="spacer" ></span><a href="https://8bitprodigy.github.io/">My Portfolio</a>
+            </div>
+            <div class="nerc" id="header">
+                <h1>
+8-Bit's corner
+                </h1>
+                <h2>
+The people may be pink, but their money is green!
+                </h2>
+            </div>
+            <div id="body">
+                <span class="nerc" id="sidebar">
+<ul>
+<li class="dir"><a href="/">Main</a>
+<ul>
+<li class="dir">Debate Notes<ul>
+<li class="dir">Leophilius-Labor Theory of Value<ul>
+			<li class="page"><a href="/Debate_Notes/Leophilius-Labor_Theory_of_Value/Debate_Notes.htm">Debate Notes</a></li>
+			<li class="page"><a href="/Debate_Notes/Leophilius-Labor_Theory_of_Value/Negative_Opening.htm">Negative Opening</a></li>
+			<li class="page"><a href="/Debate_Notes/Leophilius-Labor_Theory_of_Value/Negative_Closting_Statement.htm">Negative Closting Statement</a></li>
+			<li class="page"><a href="/Debate_Notes/Leophilius-Labor_Theory_of_Value/Cross-examination_questions.htm">Cross-examination questions</a></li>
+</ul>
+</li>		<li class="page"><a href="/Debate_Notes/VeganGains-Economics.htm">VeganGains-Economics</a></li>
+</ul>
+</li><li class="dir">Software<ul>
+<li class="dir"><a href="/Software/Kolibri_Engine/">>> Kolibri Engine <<</a>
+<ul>
+</ul>
+</li><li class="dir"><a href="/Software/nerc/">nerc</a>
+<ul>
+</ul>
+</li></ul>
+</li><li class="dir"><a href="/Harmful/">Harmful</a>
+<ul>
+		<li class="page"><a href="/Harmful/GNU_GPL_License.htm">GNU GPL License</a></li>
+		<li class="page"><a href="/Harmful/SystemD.htm">SystemD</a></li>
+</ul>
+</li><li class="dir">Humor<ul>
+		<li class="page"><a href="/Humor/BSD_Pro-Nuke.htm">BSD Pro-Nuke</a></li>
+</ul>
+</li>	<li class="page"><a href="/A_Call_for_an_Enhanced_C.htm">A Call for an Enhanced C</a></li>
+</ul>
+</li>
+</ul>
+                </span>
+                <span class="nerc" id="content">
+<h1 id="a-href-https-github-com-8bitprodigy-kolibri-engine-kolibri-engine-a"><a href="#a-href-https-github-com-8bitprodigy-kolibri-engine-kolibri-engine-a" class="anchor" aria-hidden="true">🔗</a><a href="https://github.com/8bitprodigy/kolibri_engine">Kolibri Engine</a></h1>
+<hr />
+<p><strong>Rationale:</strong> Create a simple, minimalist 3D game engine in C using raylib for education, hacking, modification, and legitimate game development. With so many game engines focusing on how many features they have, this engine stands apart, stripped down to its bare essentials.</p>
+<p>It doesn't do networking.</p>
+<p>It doesn't have a UI.</p>
+<p>It doesn't manage assets.</p>
+<p>It doesn't manage memory.</p>
+<p>It doesn't handle audio or input.</p>
+<p>It doesn't have a particle system.</p>
+<p>it doesn't have billboards, a native 3D model format, or a native scene format.</p>
+<p>It doesn't even have a configuration file format.</p>
+<p>Instead, all these features are left up to the game developer to support.
+It's so minimal, one could use it as a framework to build a more specific, more fully-featured engine atop it, making it <em>not just</em> a game engine, but a <em>game engine engine</em>. All it does have is:</p>
+<ul>
+<li>
+<p>Main loop with management(pause, unpause, exit) and callbacks</p>
+</li>
+<li>
+<p>&quot;Heads&quot; - couples a render surface with a camera and event callbacks</p>
+</li>
+<li>
+<p>Basic entity system with callbacks to define behavior</p>
+</li>
+<li>
+<p>Generic scene interface with callbacks to support different scene types through dependency injection</p>
+</li>
+<li>
+<p>Simple collision system to handle entity-entity collisions(AABB using spatial hashing)</p>
+</li>
+<li>
+<p>Simple renderer using sphere-frustum intersection to handle frustum culling</p>
+</li>
+<li>
+<p>A dynamic array container API (used internally, but exposed publicly for convenience)</p>
+</li>
+</ul>
+<p>This engine is so simple, it weighs in at only ~3500 lines of C.
+The goal of this engine is that it should be so small, the whole thing could be understood and maintained by a single person.
+It is designed following the same principle Leidtke used for his L4 microkernel:</p>
+<blockquote>
+<p>A concept is tolerated inside the microkernel only if moving it outside the kernel, i.e., permitting competing implementations, would prevent the implementation of the system's required functionality.</p>
+</blockquote>
+<hr />
+<h2 id="systems"><a href="#systems" class="anchor" aria-hidden="true">🔗</a>Systems:</h2>
+<h3 id="collision"><a href="#collision" class="anchor" aria-hidden="true">🔗</a>Collision</h3>
+<p>This handles continuous collision between all <code>Entity</code>s in the scene.</p>
+<h3 id="dynamicarray"><a href="#dynamicarray" class="anchor" aria-hidden="true">🔗</a>DynamicArray</h3>
+<p>A dynamically resizeable array used internally by the engine and provided to users.</p>
+<h3 id="engine"><a href="#engine" class="anchor" aria-hidden="true">🔗</a>Engine</h3>
+<p>This is the main system you will interface with in your game. All the other systems are subordinate to this in some manner. It uses an opaque struct to hold its state and references to all the other, subordinate systems.</p>
+<h3 id="entity"><a href="#entity" class="anchor" aria-hidden="true">🔗</a>Entity</h3>
+<p>This is what will appear in the world - enemies, props, projectiles, etc.. You will create templates of this struct to define the properties and behaviors of your Entities.</p>
+<h3 id="head"><a href="#head" class="anchor" aria-hidden="true">🔗</a>Head</h3>
+<p>This couples a camera, input, pointer to an entity, and rendering context together. You will use this to see the world and interface with it.</p>
+<h3 id="renderer"><a href="#renderer" class="anchor" aria-hidden="true">🔗</a>Renderer</h3>
+<p>This manages rendering the <code>Scene</code> to the various screen <code>Region</code>s handled by all current <code>Head</code>s.</p>
+<h3 id="scene"><a href="#scene" class="anchor" aria-hidden="true">🔗</a>Scene</h3>
+<p>This provides an interface which handles the world geometry and collision through callbacks. This is how maps/level formats will be implemented.</p>
+<h3 id="spatialhash"><a href="#spatialhash" class="anchor" aria-hidden="true">🔗</a>SpatialHash</h3>
+<p>This provides a broad-phase method to store objects in the <code>Scene</code> in order to provide spatial queries for systems like <code>Collision</code>, provided to users.</p>
+<hr />
+<h2 id="public-api"><a href="#public-api" class="anchor" aria-hidden="true">🔗</a>Public API:</h2>
+<p>These are the APIs used to make your game(s).</p>
+<h3 id="strong-kolibri-h-strong"><a href="#strong-kolibri-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>kolibri.h</strong></h3>
+<p>This just imports all the other headers.</p>
+<h2 id="strong-collision-h-strong"><a href="#strong-collision-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>collision.h</strong>:</h2>
+<ul>
+<li><code>CollisionResult Collision_checkAABB( Entity *a, Entity *b)</code>: Checks if two entities with AABB colliders are colliding and returns a <code>CollisionResult</code>.</li>
+<li><code>CollisionResult Collision_checkRayAABB( K_Ray ray, Entity *entity)</code>: Checks if <code>K_Ray</code>, <code>ray</code>, intersects with the AABB collider of <code>entity</code>.</li>
+<li><code>CollisionResult Collision_checkDiscreet( Entity *a, Entity *b)</code>: Runs a discreet collision detection check and returns a <code>CollisionResult</code>.</li>
+<li><code>CollisionResult Collision_checkContinuous( Entity *a, Entity *b, Vector3 movement)</code>: Runs a continuous collision detection check and returns a <code>CollisionResult</code> with the info.</li>
+</ul>
+<h3 id="strong-common-h-strong"><a href="#strong-common-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>common.h</strong>:</h3>
+<p>Defines macros, constants, enums, and types used commonly throughout the engine and game codebase.</p>
+<ul>
+<li>
+<p>   Most macro-defined constants are overridable</p>
+</li>
+<li>
+<p><code>V3_ZERO</code>: a Vector3 of all zeroes.</p>
+</li>
+<li>
+<p><code>V3_UP</code>: a Vector3 of a +Y-up normal.</p>
+</li>
+<li>
+<p>Enumeration of:</p>
+<ul>
+<li>
+<p>For looping through <code>Xform.xf[]</code>:</p>
+<ul>
+<li>
+<p><code>POSITION</code>: 0</p>
+</li>
+<li>
+<p><code>ROTATION</code>: 1</p>
+</li>
+<li>
+<p><code>SCALE</code>: 2</p>
+</li>
+<li>
+<p><code>SKEW</code>: 3</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Forward declaration of the following structs:</p>
+<ul>
+<li>
+<p><code>Engine</code>(<em>Opaque</em>): This is the main part you will interface with in your game</p>
+</li>
+<li>
+<p><code>Entity</code>(<em>Transparent</em>): This is what will appear in the world - enemies, props, projectiles, etc.. You will create templates of this struct to define the properties and behaviors of your Entities.</p>
+</li>
+<li>
+<p><code>Head</code>(<em>Opaque</em>): This couples a camera, input, pointer to an entity, and rendering context together. You will use this to see the world and interface with it.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The following values: <code>uint64</code>, <code>uint16</code>, <code>uint32</code>, <code>uint16</code>, <code>uint8</code>, <code>int64</code>, <code>int32</code>, <code>int16</code>, <code>int8</code>, <code>uint</code>, and <code>word</code>. <code>word</code> is the same width as the platform's word-size.</p>
+</li>
+<li>
+<p>The following structs:</p>
+<ul>
+<li>
+<p><code>CollisionResult</code>: holds information regarding the result of a collision between two entities. It has the following fields:</p>
+<ul>
+<li>
+<p><code>Vector3 position</code>: where collision occurred</p>
+</li>
+<li>
+<p><code>Vector3 normal</code>: surface normal at collision point</p>
+</li>
+<li>
+<p><code>float distance</code>: Distance to collision</p>
+</li>
+<li>
+<p><code>int material_id</code>: indicates surface type</p>
+</li>
+<li>
+<p><code>void *user_data</code>: scene-specific data</p>
+</li>
+<li>
+<p><code>bool hit</code>: self-explanatory</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>EntityList</code>: holds a pointer to an array of entities for various uses. It has the following fields:</p>
+<ul>
+<li>
+<p><code>Entity **entities</code>: pointer to the array of entities</p>
+</li>
+<li>
+<p><code>uint count</code>: number of entities in the array</p>
+</li>
+<li>
+<p><code>uint capacity</code>: actual capacity of the array</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Renderable</code>:  holds user-defined information for something which can be rendered to visualize an entity. Used in the <code>Entity</code> struct. It has the following fields:</p>
+<ul>
+<li>
+<p><code>Vector3 offset</code>: an offset to be applied to the renderable if adjusting its placement in relation to the entity is needed</p>
+</li>
+<li>
+<p><code>void *data</code>: a pointer to the data to be rendered</p>
+</li>
+<li>
+<p><code> void (*RenderableCallback)(Renderable *renderable, Vector3 position, Vector3 rotation, Vector3 scale)</code>: a function pointer to the callback used to render the <code>Renderable</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Xform</code> holds <code>position</code>, <code>rotation</code>, <code>scale</code>, and <code>skew</code>, internally union'd with <code>xf[4]</code> to allow for swizzling.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-dynamicarray-h-strong"><a href="#strong-dynamicarray-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>dynamicarray.h</strong></h3>
+<ul>
+<li>
+<p><em>Macro Defines</em>:</p>
+<ul>
+<li><code>DYNAMIC_ARRAY_GROWTH_FACTOR</code>(default 2.0f): The amount to multiply the size of the array by when growing it(overridable).</li>
+</ul>
+</li>
+<li>
+<p><em>Macro Functions</em>:</p>
+<ul>
+<li><code>DynamicArray(type, capacity)</code>: Constructs a new <code>DynamicArray</code> in a simple manner. Takes the type of the data the array will store, followed by the starting capacity for the array.</li>
+<li><code>DynamicArray_add(array, datum)</code>: Wrapper for <code>DynamicArray_append()</code> for adding a single element to the Array.</li>
+</ul>
+</li>
+<li>
+<p><em>Constructor / Destructor</em>:</p>
+<ul>
+<li><code>void *DynamicArray_new(size_t datum_size, size_t capacity)</code>: Constructs a new <code>DynamicArray</code> with element size of <code>datum_size</code>, containing <code>capacity</code> elements.</li>
+<li><code>void DynamicArray_free(void *array)</code>: Frees the given <code>DynamicArray</code>, <code>array</code>, from memory.</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em>:</p>
+<ul>
+<li><code>void DynamicArray_grow(void **array)</code>: Increases the capacity of <code>array</code> by <code>DYNAMIC_ARRAY_GROWTH_FACTOR</code> times its capacity.</li>
+<li><code>void DynamicArray_shrink(void *array)</code>: Decreases the capacity of <code>array</code> by its capacity divided by <code>DYNAMIC_ARRAY_GROWTH_FACTOR</code>.</li>
+<li><code>void DynamicArray_append(void **array, void *data, size_t length)</code>: Appends <code>length</code> number of elements from the given array <code>data</code> to the <code>DynamicArray</code>, <code>array</code>.</li>
+<li><code>size_t DynamicArray_capacity(void *array)</code>: Gets the capacity of <code>array</code>.</li>
+<li><code>void DynamicArray_clear(void *array)</code>: Clears all entries from <code>array</code>(really, it just sets its length to 0).</li>
+<li><code>size_t DynamicArray_datumSize(void *array)</code>: Gets the size of the type of the element stored in <code>array</code>.</li>
+<li><code>void DynamicArray_concat(void **array1, void *array2)</code>: Concatenates <code>array2</code> to <code>array1</code>.</li>
+<li><code>void DynamicArray_delete(void *array, size_t index, size_t length)</code>: Removes the elements starting at <code>index</code> for <code>length</code> number of cells from <code>array</code>.</li>
+<li><code>void DynamicArray_insert(void **array, size_t index, void *data, size_t length)</code>:Inserts <code>length</code> number of elements from <code>data</code> into <code>array</code> at <code>index</code>.</li>
+<li><code>size_t DynamicArray_length(void *array)</code>: Gets the number of elements currently stored in <code>array</code>.</li>
+<li><code>void DynamicArray_replace(void **array, size_t index, void *data, size_t length)</code>: Replaces <code>length</code> number of elements in <code>array</code> with the same number of elements from <code>data</code>, starting at <code>index</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-engine-h-strong"><a href="#strong-engine-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>engine.h</strong>:</h3>
+<ul>
+<li>
+<p><em>Typedefs</em>:</p>
+<ul>
+<li>
+<p><em>Callback types:</em></p>
+<ul>
+<li>
+<p><code>void (*EngineCallback)(Engine *engine)</code>: General callback.</p>
+</li>
+<li>
+<p><code>void (*EngineUpdateCallback)(Engine *engine, float delta)</code>: Called after updating every other system. Passes delta time with it.</p>
+</li>
+<li>
+<p><code>void (*EngineResizeCallback)(Engine *engine, uint width, uint height)</code>: Called after resizing the window. Use it to adjust the viewport size of <code>Head</code>s if needed.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Struct:</em></p>
+<ul>
+<li>
+<p><code>EngineVTable</code>: holds all the callbacks called by Engine. It holds the following fields:</p>
+<ul>
+<li>
+<p><code>EngineCallback Setup</code>: Called at the end of constructing the <code>Engine</code> struct.</p>
+</li>
+<li>
+<p><code>EngineCallback Run</code>: Called upon starting the engine with the <code>Engine_run()</code> method. Runs before the main loop starts. Use it to initialize certain things.</p>
+</li>
+<li>
+<p><code>EngineUpdateCallback Update</code>: Called every frame after updating all the other systems and entities.</p>
+</li>
+<li>
+<p><code>EngineCallback Render</code>: Called after rendering to all the active <code>Head</code>s. Used for final composition of the rendered frame before presenting it to the screen.</p>
+</li>
+<li>
+<p><code>EngineResizeCallback Resize</code>: Called upon resizing the window. Use it to adjust the viewport size of all the <code>head</code>s if needed.</p>
+</li>
+<li>
+<p><code>EngineCallback Exit</code>: Called upon stopping the engine. Use it to deinitialize certain things if needed.</p>
+</li>
+<li>
+<p><code>EngineCallback Free</code>: Called before freeing up <code>Engine</code> from memory. Use it to free up anything you need to get rid of so it's not stuck in memory, inaccessible.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Engine Methods:</em></p>
+<ul>
+<li>
+<p><em>Constructor/Destructor</em></p>
+<ul>
+<li>
+<p><code>Engine *Engine_new( EngineVTable *vtable)</code>: Constructs a new <code>Engine</code> struct, and returns a pointer. Takes a prepared <code>EngineVTable</code>, already populated with callbacks.</p>
+</li>
+<li>
+<p><code>void Engine_free(Engine *engine)</code>: Frees up an <code>Engine</code> from memory. This will call the <code>Free</code> callback if it has been provided.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Setters</em></p>
+<ul>
+<li><code>void Engine_setVTable(Engine *engine, EngineVTable *vtable)</code>: Sets the engine's VTable to a different EngineVTable.</li>
+</ul>
+</li>
+<li>
+<p><em>Getters</em></p>
+<ul>
+<li>
+<p><code>float Engine_getDeltaTime(Engine *engine)</code>: Gets the delta time for the current frame.</p>
+</li>
+<li>
+<p><code>uint64 EngineGetFrameNumber(Engine *engine)</code>: Gets the number of frames which have been rendered since running the engine.</p>
+</li>
+<li>
+<p><code>EntityList *Engine_getEntityList(Engine *engine)</code>: Gets a list of all the Entities subordinate to the Engine.</p>
+</li>
+<li>
+<p><code>Head *Engine_getHeads(Engine *engine)</code>: Returns a pointer to the root Head.</p>
+</li>
+<li>
+<p><code>Scene *Engine_getScene(Engine *engine)</code>: Returns a pointer to the current Scene.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em></p>
+<ul>
+<li>
+<p><code>void Engine_run(Engine *engine)</code>: Runs the Engine, starting the simulation.</p>
+</li>
+<li>
+<p><code>void Engine_pause(Engine *engine, bool paused)</code>: Sets the paused state of the engine. Useful for pausing the simulation, and to pass control between the Engine and a menu.</p>
+</li>
+<li>
+<p><code>void Engine_requestExit(Engine *engine)</code>: Requests the engine to exit on the next update.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-entity-h-strong"><a href="#strong-entity-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>entity.h</strong>:</h3>
+<ul>
+<li><em>Typedefs</em>:</li>
+</ul>
+<pre><code class="language-c">typedef void (*EntityCallback)(         Entity *entity);
+typedef void (*EntityCollisionCallback)(Entity *entity, CollisionResult collision);
+typedef void (*EntityUpdateCallback)(   Entity *entity, float           delta);
+
+typedef struct
+EntityVTable
+{
+    EntityCallback          Setup;       /* Called on initialization of a new Entity */
+    EntityCallback          Enter;       /* Called upon Entity entering the scene */
+    EntityUpdateCallback    Update;      /* Called once every tick prior to rendering */
+    EntityUpdateCallback    Render;      /* Called once every frame prior to rendering the Entity */
+    EntityCollisionCallback OnCollision; /* Called when the Entity collides with something while moving */
+    EntityCollisionCallback OnCollided;  /* Called when another Entity collides with this Entity */
+    EntityCallback          Exit;        /* Called upon Entity exiting the scene */
+    EntityCallback          Free;        /* Called upon freeing Entity from memory */
+}
+EntityVTable;
+
+
+typedef struct 
+Entity 
+{
+    void           *user_data;
+    EntityVTable   *vtable;
+    Renderable     *renderables[  MAX_LOD_LEVELS];
+    float           lod_distances[MAX_LOD_LEVELS];
+    uint8           lod_count;
+    float           visibility_radius;
+    float           floor_max_angle;
+    union {
+        Vector3 bounds;
+        struct {
+            float
+                radius,
+                height,
+                _reserved_;
+        };
+    };
+    Vector3         
+                    bounds_offset,
+                    renderable_offset,
+                    velocity;
+    int            max_slides;
+    union {
+        Transform transform;
+        struct {
+            Vector3    position;
+            Quaternion orientation;
+            Vector3    scale;
+        };
+    };
+    
+    struct {
+        union {
+            uint8 layers;
+            struct {
+                bool
+                    layer_0:1,
+                    layer_1:1,
+                    layer_2:1,
+                    layer_3:1,
+                    layer_4:1,
+                    layer_5:1,
+                    layer_6:1,
+                    layer_7:1;
+            };
+        };
+        union {
+            uint8 masks;
+            struct {
+                bool
+                    mask_0:1,
+                    mask_1:1,
+                    mask_2:1,
+                    mask_3:1,
+                    mask_4:1,
+                    mask_5:1,
+                    mask_6:1,
+                    mask_7:1;
+            };
+        };
+    }
+    collision;
+    
+    union {
+        uint8 flags;
+        struct {
+            bool
+                active         :1,
+                visible        :1,
+                solid          :1; /* Solid or area collision */
+            CollisionShape 
+                collision_shape:2; /* 0 = None | 1 = AABB | 2 = Cylinder | 3 = Sphere */
+            bool
+                _flag_5        :1,
+                _flag_6        :1,
+                _flag_7        :1;
+        };
+    };
+
+    char *local_data[];
+} 
+Entity;
+</code></pre>
+<ul>
+<li>
+<p>*Constructor / Destructor *</p>
+<ul>
+<li><code>Entity *Entity_new(const Entity *template_entity, Scene *scene, size_t local_data_size)</code>: Constructs a new entity from the given <code>template_entity</code>, adding it to the <code>scene</code>, with optional <code>local_data_size</code> memory allocated at the end.</li>
+<li><code>void Entity_free(Entity *entity)</code>: Destructs the given <code>entity</code> removing it from the scene.</li>
+</ul>
+</li>
+<li>
+<p><em>Setters / Getters</em>:</p>
+<ul>
+<li><code>double Entity_getAge(Entity *entity)</code>: Get the age of the entity in seconds since the time of its creation.</li>
+<li><code>BoundingBox Entity_getBoundingBox(Entity *entity)</code>: Get the raylib <code>BoundingBox</code> of the entity.</li>
+<li><code>Renderable *Entity_getLODRenderable(Entity *entity, Vector3 camera_position)</code>: Get the <code>Renderable</code> for <code>entity</code> at the given <code>camera_position</code>.</li>
+<li><code>Engine *Entity_getEngine(Entity *entity)</code>: Get the <code>engine</code> which <code>entity</code> is subordinate to.</li>
+<li><code>Entity *Entity_getNext(Entity *entity)</code>: Get the next <code>Entity</code> in the linked list in relation to <code>entity</code>.</li>
+<li><code>Entity *Entity_getPrev(Entity *entity)</code>: Get the previous <code>Entity</code> in the linked list in relation to <code>entity</code>.</li>
+<li><code>Scene *Entity_getScene(Entity *entity)</code>: Get the <code>Scene</code> the <code>entity</code> is currently in.</li>
+<li><code>uint64 Entity_getUniqueID(Entity *entity)</code>: Get the unique ID of <code>entity</code>.</li>
+<li><code>bool Entity_isOnFloor(Entity *entity)</code>: Returns true if <code>entity</code> is touching a floor.</li>
+<li><code>bool Entity_isOnWall(Entity *entity)</code>: Returns true if <code>entity</code> is touching a wall.</li>
+<li><code>bool Entity_isOnCeiling(Entity *entity)</code>: Returns true if <code>entity</code> is touching a ceiling.</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em>:</p>
+<ul>
+<li><code>CollisionResult Entity_move(Entity *entity, Vector3 movement)</code>: Move the <code>entity</code> by <code>movement</code> until the first collision.</li>
+<li><code>CollisionResult Entity_moveAndSlide(Entity *entity, Vector3 movement)</code>: Move the <code>entity</code> by <code>movement</code>, allowing it to slide(requires you set the <code>Entity.max_slides</code> value).</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-head-h-strong"><a href="#strong-head-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>head.h</strong>:</h3>
+<ul>
+<li><em>Typedefs</em>:</li>
+</ul>
+<pre><code class="language-c">/* Callback Types */
+typedef void        (*HeadCallback)(            Head *head);
+typedef void        (*HeadUpdateCallback)(      Head *head, float delta);
+typedef void        (*HeadResizeCallback)(      Head *head, uint  width,  uint height);
+
+typedef struct
+HeadVTable
+{
+    HeadCallback       Setup;      /* Called immediately after initialization */
+    HeadUpdateCallback Update;     /* Called every frame before rendering */
+    HeadCallback       PreRender;  /* Called during render, prior to rendering the scene.*/
+    HeadCallback       PostRender; /* Called after rendering the scene */
+    HeadResizeCallback Resize;     /* Called upon window resize */
+    HeadCallback       Exit;       /* Called upon removal of Head from engine */
+    HeadCallback       Free;       /* Called upon freeing the Head from memory */
+}
+HeadVTable;
+
+typedef struct
+{
+    float max_render_distance;
+    int   max_entities_per_frame;
+    union {
+        uint8 flags;
+        struct {
+            bool frustum_culling          :1;
+            bool sort_transparent_entities:1;
+            bool level_of_detail          :1;
+            bool flag_3                   :1; /* 3-4 not yet defined */
+            bool flag_4                   :1;
+            bool draw_entity_origin       :1;
+            bool draw_bounding_boxes      :1;
+            bool show_lod_levels          :1;
+        };
+    };
+}
+RendererSettings;
+</code></pre>
+<ul>
+<li>
+<p><em>Constructor / Destructor</em>:</p>
+<ul>
+<li><code>Head *Head_new(int Controller_ID, Region region, HeadVTable *vtable, Engine *engine)</code>: Constructs a new <code>Head</code> with a screen region of <code>region</code>, the callbacks in <code>vtable</code>, adds it to <code>engine</code> and returns the pointer.</li>
+<li><code>void Head_free(Head *head)</code>: Destructs the <code>head</code>, calling its <code>HeadVTable.Free()</code> callback, and then freeing itself from memory.</li>
+</ul>
+</li>
+<li>
+<p><em>Setters / Getters</em>:</p>
+<ul>
+<li><code>Head *Head_getNext(Head *head)</code>: Gets the pointer to the next <code>Head</code> in the linked list from <code>head</code>.</li>
+<li><code>Head *Head_getPrev(Head *head)</code>: Gets the pointer to the previous <code>Head</code> in the linked list from <code>head</code>.</li>
+<li><code>Camera3D *Head_getCamera(Head *head)</code>: Gets the pointer to <code>head</code>'s <code>Camera3D</code>.</li>
+<li><code>Engine *Head_getEngine(Head *head)</code>: Gets the pointer to the <code>Engine</code> the given <code>head</code> is in.</li>
+<li><code>Frustum *Head_getFrustum(Head *head)</code>: Gets the pointer to the <code>head</code>'s <code>Camera3D</code>'s <code>Frustum</code>.</li>
+<li><code>RenderTexture *Head_getViewport(Head *head)</code>: <strong>Only available if <code>HEAD_USE_RENDER_TEXTURE</code> is defined</strong>. Gets the pointer to the <code>RenderTexture</code> viewport.</li>
+<li><code>Region Head_getRegion(Head *head)</code>: Gets the pointer to <code>head</code>'s <code>Region</code> of the screen it renders to.</li>
+<li><code>void Head_setRegion(Head *head, Region region)</code>: Sets the <code>head</code>'s screen region.</li>
+<li><code>void *Head_getUserData( Head *head)</code>: Gets the pointer to the data pointed to by <code>head</code>.</li>
+<li><code>void Head_setUserData(Head *head, void *user_data)</code>: Sets the data <code>head</code> points to.</li>
+<li><code>void Head_setVTable(Head *head, HeadVTable *vtable)</code>: Sets the <code>HeadVTable</code> <code>head</code> uses for callbacks.</li>
+<li><code>HeadVTable *Head_getVTable(Head *head)</code>: Gets the pointer to the <code>HeadVTable</code> currently used by <code>head</code>.</li>
+<li><code>RendererSettings *Head_getRendererSettings(Head *head)</code>: Gets the pointer to the <code>RenderSettings</code> used by <code>head</code>.</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em>:</p>
+<ul>
+<li><code>void Head_setup(Head *head)</code>: Calls the <code>HeadVTable.Setup()</code> function <code>head</code> currently points to.</li>
+<li><code>void Head_update(Head *head, float delta)</code>: Calls the <code>HeadVTable.Update()</code> function <code>head</code> currently points to.</li>
+<li><code>void Head_preRender(Head *head)</code>: Calls the <code>HeadVTable.PreRender()</code> function <code>head</code> currently points to.</li>
+<li><code>void Head_postRender(Head *head)</code>: Calls the <code>HeadVTable.PostRender()</code> function <code>head</code> currently points to.</li>
+<li><code>void Head_exit(Head *head)</code>: Calls the <code>HeadVTable.Exit()</code> function <code>head</code> currently points to.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-renderer-h-strong"><a href="#strong-renderer-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>renderer.h</strong>:</h3>
+<ul>
+<li>
+<p><em>Typedefs</em>:</p>
+<ul>
+<li><code>Renderer</code>: Opaque struct of the renderer.</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em>:</p>
+<ul>
+<li><code>void Renderer_submitEntity(Renderer *renderer, Entity *entity)</code>: Called each frame in order to submit an entity to be rendered.</li>
+<li><code>void Renderer_submitGeometry(Renderer *renderer, Renderable *renderable, Vector3 pos, Vector3 bounds)</code>: Called each frame in order to submit a chunk of geometry(such as level geometry) to be rendered.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-scene-h-strong"><a href="#strong-scene-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>scene.h</strong>:</h3>
+<ul>
+<li><em>Typedefs</em>:</li>
+</ul>
+<pre><code class="language-c">typedef struct Scene Scene;
+
+
+typedef void            (*SceneCallback)(         Scene *scene);
+typedef void            (*SceneDataCallback)(     Scene *scene, void    *map_data);
+typedef void            (*SceneUpdateCallback)(   Scene *scene, float    delta);
+typedef void            (*SceneEntityCallback)(   Scene *scene, Entity  *entity);
+typedef CollisionResult (*SceneCollisionCallback)(Scene *scene, Entity  *entity, Vector3 to);
+typedef CollisionResult (*SceneRaycastCallback)(  Scene *scene, Vector3  from,   Vector3 to);
+typedef void            (*SceneRenderCallback)(   Scene *scene, Head    *head);
+
+
+typedef struct
+SceneVTable
+{
+    SceneDataCallback            Setup;          /* Called on initialization */
+    SceneCallback                Enter;          /* Called on entering the engine */
+    SceneUpdateCallback          Update;         /* Called once every frame after updating all the entities and before rendering */
+    SceneEntityCallback          EntityEnter;    /* Called every time an Entity enters the scene */
+    SceneEntityCallback          EntityExit;     /* Called every time an Entity exits the scene */
+    SceneCollisionCallback       CheckCollision; /* Called when checking if an entity would collide if moved */
+    SceneCollisionCallback       MoveEntity;     /* Called Every time an Entity moves in order to check if it has collided with the scene */
+    SceneRaycastCallback         Raycast;        /* Called Every time a raycast is performed in order to check if has collided with the scene */
+    SceneRenderCallback          Render;         /* Called once every frame in order to render the scene */
+    SceneCallback                Exit;           /* Called upon Scene exiting the engine */
+    SceneDataCallback            Free;           /* Called upon freeing the Scene from memory */
+}
+SceneVTable;
+</code></pre>
+<ul>
+<li>
+<p><em>Constructor / Destructor</em>:</p>
+<ul>
+<li><code>Scene *Scene_new(SceneVTable *scene_type, void *data, Engine *engine)</code>: Constructs a new <code>Scene</code> with the callbacks defined in <code>scene_type</code>, <code>data</code>, and adds it to <code>engine</code>.</li>
+<li><code>void Scene_free(Scene *scene)</code>: Destructs <code>scene</code> by calling its <code>SceneVTable.Free()</code> callback, and then freeing itself from memory.</li>
+</ul>
+</li>
+<li>
+<p><em>Setters / Getters</em>;</p>
+<ul>
+<li><code>Engine *Scene_getEngine(Scene *scene)</code>: Gets the pointer to the <code>Engine</code> <code>scene</code> is currently in.</li>
+<li><code>uint Scene_getEntityCount( Scene *scene)</code>: Gets the number of <code>Entity</code>s in <code>scene</code>.</li>
+<li><code>EntityList *Scene_getEntityList(  Scene *scene)</code>: Gets the <code>Entity</code>s in the scene as an array.</li>
+<li><code>void *Scene_getMapData(Scene *scene)</code>: Gets the pointer to <code>scene</code>'s data.</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em>;</p>
+<ul>
+<li><code>void Scene_enter(Scene *scene)</code>: Calls the <code>SceneVTable.Enter()</code> function <code>scene</code> currently points to.</li>
+<li><code>void Scene_update(Scene *scene, float    delta)</code>: Calls the <code>SceneVTable.Update()</code> function <code>scene</code> currently points to.</li>
+<li><code>void Scene_entityEnter(Scene *scene, Entity  *entity)</code>: Calls the <code>SceneVTable.EntityEnter()</code> function <code>scene</code> currently points to.</li>
+<li><code>void Scene_entityExit(Scene *scene, Entity  *entity)</code>: Calls the <code>SceneVTable.EntityExit()</code> function <code>scene</code> currently points to.</li>
+<li><code>CollisionResult Scene_checkCollision( Scene *scene, Entity  *entity, Vector3 to)</code>: Calls the <code>SceneVTable.CheckCollision()</code> function <code>scene</code> currently points to. Returns the <code>CollisionResult</code>.</li>
+<li><code>CollisionResult Scene_checkContinuous(Scene *scene, Entity  *entity, Vector3 movement)</code>: Calls the <code>SceneVTable.CheckContinuous()</code> function <code>scene</code> currently points to. Returns the <code>CollisionResult</code>.</li>
+<li><code>CollisionResult Scene_raycast(Scene *scene, Vector3  from,   Vector3 to)</code>: Calls the <code>SceneVTable.Raycast()</code> function <code>scene</code> currently points to.</li>
+<li><code>void Scene_render(Scene *scene, Head    *head)</code>: Calls the <code>SceneVTable.Render()</code> function <code>scene</code> currently points to.</li>
+<li><code>void Scene_exit(Scene *scene)</code>: Calls the <code>SceneVTable.Exit()</code> function <code>scene</code> currently points to.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-spatialhash-h-strong"><a href="#strong-spatialhash-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>spatialhash.h</strong>:</h3>
+<ul>
+<li>
+<p><em>Typedefs</em>:</p>
+<ul>
+<li><code>SpatialHash</code>: Opaque struct for the spatial hash.</li>
+</ul>
+</li>
+<li>
+<p><em>Constructor / Destructor</em>:</p>
+<ul>
+<li><code>SpatialHash *SpatialHash_new(void)</code>: Construct a new <code>SpatialHash</code>.</li>
+<li><code>void SpatialHash_free(SpatialHash *hash)</code>: Destruct a <code>SpatialHash</code>, freeing it from memory.</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em>:</p>
+<ul>
+<li><code>void SpatialHash_clear(SpatialHash *hash)</code>: Clears all the items from the <code>SpatialHash</code>, <code>hash</code>.</li>
+<li><code>void  SpatialHash_insert(SpatialHash *hash, void *data, Vector3 center, Vector3 bounds)</code>: Inserts <code>data</code> into <code>hash</code> at <code>center</code> with <code>bounds</code> dimensions for later retrieval.</li>
+<li><code>void *SpatialHash_queryRegion(SpatialHash *hash, BoundingBox region, void **query_results, int *count)</code>: Queries all the entries in <code>hash</code> within <code>region</code>, and populates <code>query_results</code> with <code>count</code> of them.</li>
+</ul>
+</li>
+</ul>
+<h2 id="protected-api"><a href="#protected-api" class="anchor" aria-hidden="true">🔗</a>Protected API:</h2>
+<p>These APIs are used internally within the engine. They are NOT to be used to make games. They are documented here in order to enable developers to better understand the engine for education and modification.</p>
+<h3 id="strong-collison-h-strong"><a href="#strong-collison-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>_collison_.h</strong>:</h3>
+<ul>
+<li>
+<p><em>Typedefs</em>:</p>
+<ul>
+<li><code>typedef struct CollisionScene CollisionScene</code>: Opaque type for the collision scene.</li>
+</ul>
+</li>
+<li>
+<p><em>Scene MGMT</em>:</p>
+<ul>
+<li><code>void CollisionScene__markRebuild(CollisionScene *scene)</code>:</li>
+<li><code>void CollisionScene__insertEntity(CollisionScene *scene, Entity *entity)</code>:</li>
+<li><code>void CollisionScene__clear(CollisionScene *scene)</code>:</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em>:</p>
+<ul>
+<li><code>Entity **CollisionScene__queryRegion(CollisionScene *scene, BoundingBox  bbox, int *count)</code>: Returns an array of <code>Entity</code>s in the <code>scene</code> within the given <code>bbox</code>, and modifies <code>count</code> to indicate the length of the array.</li>
+<li><code>CollisionResult CollisionScene__checkCollision(CollisionScene *scene, Entity *entity, Vector3 to)</code>: Checks <code>entity</code> for a discreet collision within <code>scene</code> if it's at position <code>to</code>. Returns results as <code>CollisionResult</code>.</li>
+<li><code>CollisionResult CollisionScene__moveEntity(CollisionScene *scene, Entity *entity, Vector3 movement)</code>: Checks <code>entity</code> for a continuous collision within <code>scene</code> by moving it along <code>movement</code>. Returns result as <code>CollisionResult</code>.</li>
+<li><code>CollisionResult CollisionScene__raycast(CollisionScene *scene, K_Ray ray)</code>: Checks a raycast <code>ray</code> within <code>scene</code>. Returns result as <code>CollisionResult</code>.</li>
+<li><code>void CollisionScene__update(CollisionScene *scene)</code>: Rebuilds the whole <code>CollisionScene</code> <code>SpatialHash</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-engine-h-strong"><a href="#strong-engine-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>_engine_.h</strong>:</h3>
+<ul>
+<li><em>Methods</em>:
+<ul>
+<li><code>Head *Engine__getHeads(Engine *engine)</code>: Returns the pointer to the first <code>head</code> in the list attached to <code>engine</code>.</li>
+<li><code>void Engine__insertHead(Engine *engine, Head *head)</code>: Adds a new <code>head</code> to <code>engine</code>.</li>
+<li><code>void Engine__removeHead(Engine *engine, Head *head)</code>: Removes the given <code>head</code> from <code>engine</code>.</li>
+<li><code>Scene *Engine__getScene(Engine *engine)</code>: Returns the pointer to the current <code>Scene</code>.</li>
+<li><code>void Engine__insertScene(Engine *engine, Scene *scene)</code>: Adds a new <code>Scene</code>, <code>scene</code>, to the <code>engine</code>.</li>
+<li><code>void Engine__removeScene(Engine *engine, Scene *scene)</code>: Removes the <code>Scene</code>, <code>scene</code>, rom the <code>engine</code>.</li>
+<li><code>Renderer *Engine__getRenderer(Engine *engine)</code>: Returns a pointer to the <code>engine</code>'s <code>Renderer</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-entity-h-strong"><a href="#strong-entity-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>_entity_.h</strong>:</h3>
+<ul>
+<li><em>Typedefs</em>:</li>
+</ul>
+<pre><code class="language-c">typedef struct
+EntityNode
+{
+    struct EntityNode
+        *prev,
+        *next;
+
+    Engine *engine;
+    Scene  *scene;
+    uint64  unique_ID;
+    double  creation_time;
+    size_t  size;
+    int     current_lod;
+    float   last_lod_distance; /* Cache to avoid recalculating every frame */
+    union {
+        uint8 flags;
+        struct {
+            bool
+                visible_last_frame:1, /* For frustum culling optimizations */
+                on_floor          :1, /* Collision States */
+                on_wall           :1,
+                on_ceiling        :1,
+                _flag_4           :1, /* Not yet defined */
+                _flag_5           :1,
+                _flag_6           :1,
+                _flag_7           :1;
+        };
+    };
+    
+    Entity  base;
+}
+EntityNode;
+</code></pre>
+<ul>
+<li>
+<p><em>Destructors</em>:</p>
+<ul>
+<li><code>void EntityNode__free(EntityNode *entity_node)</code>: Frees <code>entity_node</code> from memory.</li>
+<li><code>void EntityNode__freeAll(EntityNode *entity_node)</code>: Frees all <code>EntityNode</code>s in the chain connected to <code>entity_node</code>.</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em>:</p>
+<ul>
+<li><code>void EntityNode__insert(EntityNode *self, EntityNode *to)</code>: Inserts <code>EntityNode</code> <code>self</code> behind <code>to</code>.</li>
+<li><code>void EntityNode__updateAll(EntityNode *entity_node, float delta)</code>: Calls the update callback of <code>entity_node</code>, passing it the elapsed time as <code>delta</code>. Called once every tick.</li>
+<li><code>void EntityNode__renderAll(EntityNode *entity_node, float delta)</code>: Calls the render callback of <code>entity_node</code>, passing it the elapsed time as <code>delta</code>. Called once every frame.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-head-h-strong"><a href="#strong-head-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>_head_.h</strong>:</h3>
+<ul>
+<li><em>Typedefs</em>:</li>
+</ul>
+<pre><code class="language-c">typedef struct 
+Head
+{
+    Camera3D                  camera;
+    Vector3
+        prev_position,
+        prev_target;
+    float                     prev_fovy;
+    int
+        prev_width,
+        prev_height;
+#ifdef HEAD_USE_RENDER_TEXTURE
+    RenderTexture             viewport;
+#endif /* HEAD_USE_RENDER_TEXTURE */
+    Region                    region;
+    RendererSettings          settings;
+    Frustum                   frustum;
+    Engine                   *engine;
+    void                     *user_data;
+
+    struct Head
+        *prev,
+        *next;
+
+    HeadVTable *vtable;
+} 
+Head;
+</code></pre>
+<ul>
+<li><em>Methods</em>:
+<ul>
+<li><code>void Head__freeAll(Head *head)</code>: Frees all <code>Head</code>s in the chain connected to <code>head</code>.</li>
+<li><code>void Head__updateAll(Head *head, float delta)</code>: Updates all <code>Head</code>s in the chain connected to <code>head</code>, passing the elapsed time since last frame as <code>delta</code>. Called every render frame.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-renderer-h-strong"><a href="#strong-renderer-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>_renderer_.h</strong>:</h3>
+<ul>
+<li>
+<p><em>Typedefs</em>:</p>
+<ul>
+<li><code>typedef struct Renderer Renderer</code></li>
+</ul>
+</li>
+<li>
+<p><em>Constructor / Destructor</em>:</p>
+<ul>
+<li><code>Renderer *Renderer__new( Engine *engine)</code>: Constructs a new <code>Renderer</code> and attaches it to <code>engine</code>.</li>
+<li><code>void Renderer__free(Renderer *renderer)</code>: Frees <code>renderer</code> from memory.</li>
+</ul>
+</li>
+<li>
+<p><em>Methods</em>:</p>
+<ul>
+<li><code>void Renderer__render(Renderer *renderer, Head *head)</code>: Renders the current scene to <code>head</code>'s region/viewport.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-scene-h-strong"><a href="#strong-scene-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>_scene_.h</strong>:</h3>
+<ul>
+<li><em>Typedefs</em>:</li>
+</ul>
+<pre><code class="language-c">typedef struct 
+Scene
+{
+    struct Scene
+        *prev,
+        *next;
+    
+    Engine         *engine;
+    MemPool         entity_pool;
+    EntityNode     *entities;
+    CollisionScene *collision_scene;
+    SceneVTable    *vtable;
+    void           *map_data;
+    EntityList      entity_list;
+    uint            entity_count;
+    
+    union {
+        uint8 flags;
+        struct {
+            bool dirty_EntityList:1;
+            bool flag_1          :1; /* 1-7 not yet defined */
+            bool flag_2          :1;
+            bool flag_3          :1; 
+            bool flag_4          :1;
+            bool flag_5          :1;
+            bool flag_6          :1;
+            bool flag_7          :1;
+        };
+    };
+} 
+Scene;
+</code></pre>
+<ul>
+<li><em>Methods</em>:
+<ul>
+<li><code>void Scene__freeAll(Scene *scene)</code>: Frees all <code>Scene</code>s attached to the engine.</li>
+<li><code>EntityNode *Scene__getEntities(Scene *scene)</code>: Returns an array of all <code>EntityNode</code>s attached to <code>scene</code></li>
+<li><code>void Scene__insertEntity(Scene *scene, EntityNode *node)</code>: Inserts a new <code>EntityNode</code>, <code>node</code>, into <code>scene</code>.</li>
+<li><code>void Scene__removeEntity(Scene *scene, EntityNode *node)</code>: Removes the <code>EntityNode</code>, <code>node</code>, from <code>scene</code>.</li>
+<li><code>void Scene__update(Scene *scene, float delta)</code>: Updates the <code>scene</code>, passing the elapsed time since last update via <code>delta</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="strong-spatialhash-h-strong"><a href="#strong-spatialhash-h-strong" class="anchor" aria-hidden="true">🔗</a><strong>_spatialhash_.h</strong>:</h3>
+<ul>
+<li><em>Typedefs</em>:</li>
+</ul>
+<pre><code class="language-c">typedef struct SpatialEntry SpatialEntry;
+
+typedef struct 
+SpatialHash
+{
+    SpatialEntry *entry_pool; /* pre-allocated entries for performance */
+    SpatialEntry *free_entries; /* Free list for recycling */
+    int           pool_size;
+    int           pool_used;
+    int           hash_size; /* Number of hash buckets */
+    float         cell_size; /* Size of each cell */
+    SpatialEntry *cells[SPATIAL_HASH_SIZE]; 
+}
+SpatialHash;
+</code></pre>
+<hr />
+<h2 id="license-public-domain-or-0bsd"><a href="#license-public-domain-or-0bsd" class="anchor" aria-hidden="true">🔗</a>License: Public Domain or 0BSD</h2>
+<pre><code>Zero-Clause BSD
+
+=============== 
+
+Permission to use, copy, modify, and/or distribute this software for
+any purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot; AND THE AUTHOR DISCLAIMS ALL
+WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE
+FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY
+DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
+OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+</code></pre>
+
+                </span>
+            </div>
+            <div class="nerc" id="footer">
+This page was generated by&nbsp;<a href="https://github.com/8bitprodigy/nerc">nerc</a>.
+                <span class="spacer" ></span>
+All information here is public domain/CC0/0BSD.
+            </div>
+        </div>
+    </body>
+</html>

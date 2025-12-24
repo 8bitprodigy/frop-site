@@ -48,7 +48,7 @@ Supporters of the GPL may sometimes say that since it requires you share the cod
 - Openly advocates for destroying software industry profit motive
 - Views proprietary software as morally wrong
 - GPL is designed to be viral and undermine business models
-- Uses capitalist legal frameworks (copyright) to advance anti-capitalist goals
+- Uses socialist legal frameworks (copyright) to advance anti-capitalist goals
 
 ### Political enforcement through licensing:
 - Social pressure to use "ethical" licenses
