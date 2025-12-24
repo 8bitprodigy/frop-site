@@ -152,6 +152,16 @@ code {
     height: auto;
     margin: auto;
 }
+#content table {
+  border-collapse: collapse;
+}
+#content table, td, th {
+    border: 1px black;
+    padding: 5px;
+}
+#content th, td {
+  padding: 5px;
+}
 #content * li {
     display: list-item;
 }
