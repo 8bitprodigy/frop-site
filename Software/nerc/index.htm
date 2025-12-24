@@ -93,18 +93,65 @@ The people may be pink, but their money is green!
 <h3 id="config-json"><a href="#config-json" class="anchor" aria-hidden="true">🔗</a>config.json</h3>
 <p>You'll likely first wish to create your own <code>config.json</code> file to override the default settings built in to <code>nerc</code>.
 This is a list of the various config options:</p>
-<p>| <strong>Key</strong>          | <strong>Value Type</strong>                                                                                                                                                       | <strong>Description</strong>                                                                                                                                                                                                |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <code>&quot;index&quot;</code>        | string (default: <code>&quot;$readme&quot;</code>): <code>&quot;newest&quot;</code> to use the newest created file, to select a specific file name (excluding file extension), make the first character a <code>$</code>. | Sets what document gets converted into <code>index.htm</code>.                                                                                                                                                            |
-| <code>&quot;sort&quot;</code>         | string (default: <code>&quot;alphabetical&quot;</code>): <code>&quot;alphabetical&quot;</code> to sort alphabetically, <code>&quot;newest&quot;</code> to sort by newest                                                            | Sets how page links are sorted in the sidebar.                                                                                                                                                                 |
-| <code>&quot;page title&quot;</code>   | string                                                                                                                                                               | Sets the page's title tag (in the browser window titlebar/tab).                                                                                                                                                |
-| <code>&quot;links&quot;</code>        | array of JSON objects: <code>{&quot;label&quot;: [string to hyperlink], &quot;link&quot;:[string of URL to link to]}</code>                                                                         | Sets the links that appear at the top of the page. Spacers can be inserted by inserting the following JSON object: <code>{&quot;label&quot;: &quot;&quot;, &quot;link&quot;: &quot;SPACER&quot;}</code>                                                           |
-| <code>&quot;site title&quot;</code>   | string                                                                                                                                                               | Sets the title at the top of each page, below the links row.                                                                                                                                                   |
-| <code>&quot;subtitle&quot;</code>     | string                                                                                                                                                               | Sets the subtitle for the site that appears next to the title.                                                                                                                                                 |
-| <code>&quot;upper nav&quot;</code>    | bool (default: <code>false</code>)                                                                                                                                              | If true inserts previous/next navigation links at the top of the document to navigate to other documents within the current directory                                                                          |
-| <code>&quot;doc title&quot;</code>    | bool (default: <code>true</code>)                                                                                                                                               | If true, inserts the document's formatted file name (underscores and file extension removed) into the top of the document in a <code>&lt;h1&gt;</code> tag.                                                                     |
-| <code>&quot;lower nav&quot;</code>    | bool (default: <code>false</code>)                                                                                                                                              | If true inserts previous/next navigation links at the bottom of the document to navigate to other documents within the current directory                                                                       |
-| <code>&quot;footer right&quot;</code> | string                                                                                                                                                               | Sets the text string that is inserted into the footer at the bottom of the page on the right. You can insert HTML into this portion for formatting effects, or if you'd like to add a search bar or something. |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Key</strong></th>
+<th><strong>Value Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;index&quot;</code></td>
+<td>string (default: <code>&quot;$readme&quot;</code>): <code>&quot;newest&quot;</code> to use the newest created file, to select a specific file name (excluding file extension), make the first character a <code>$</code>.</td>
+<td>Sets what document gets converted into <code>index.htm</code>.</td>
+</tr>
+<tr>
+<td><code>&quot;sort&quot;</code></td>
+<td>string (default: <code>&quot;alphabetical&quot;</code>): <code>&quot;alphabetical&quot;</code> to sort alphabetically, <code>&quot;newest&quot;</code> to sort by newest</td>
+<td>Sets how page links are sorted in the sidebar.</td>
+</tr>
+<tr>
+<td><code>&quot;page title&quot;</code></td>
+<td>string</td>
+<td>Sets the page's title tag (in the browser window titlebar/tab).</td>
+</tr>
+<tr>
+<td><code>&quot;links&quot;</code></td>
+<td>array of JSON objects: <code>{&quot;label&quot;: [string to hyperlink], &quot;link&quot;:[string of URL to link to]}</code></td>
+<td>Sets the links that appear at the top of the page. Spacers can be inserted by inserting the following JSON object: <code>{&quot;label&quot;: &quot;&quot;, &quot;link&quot;: &quot;SPACER&quot;}</code></td>
+</tr>
+<tr>
+<td><code>&quot;site title&quot;</code></td>
+<td>string</td>
+<td>Sets the title at the top of each page, below the links row.</td>
+</tr>
+<tr>
+<td><code>&quot;subtitle&quot;</code></td>
+<td>string</td>
+<td>Sets the subtitle for the site that appears next to the title.</td>
+</tr>
+<tr>
+<td><code>&quot;upper nav&quot;</code></td>
+<td>bool (default: <code>false</code>)</td>
+<td>If true inserts previous/next navigation links at the top of the document to navigate to other documents within the current directory</td>
+</tr>
+<tr>
+<td><code>&quot;doc title&quot;</code></td>
+<td>bool (default: <code>true</code>)</td>
+<td>If true, inserts the document's formatted file name (underscores and file extension removed) into the top of the document in a <code>&lt;h1&gt;</code> tag.</td>
+</tr>
+<tr>
+<td><code>&quot;lower nav&quot;</code></td>
+<td>bool (default: <code>false</code>)</td>
+<td>If true inserts previous/next navigation links at the bottom of the document to navigate to other documents within the current directory</td>
+</tr>
+<tr>
+<td><code>&quot;footer right&quot;</code></td>
+<td>string</td>
+<td>Sets the text string that is inserted into the footer at the bottom of the page on the right. You can insert HTML into this portion for formatting effects, or if you'd like to add a search bar or something.</td>
+</tr></tbody></table>
 <p>Only defined config options will be overridden, so any settings not defined in a directory's <code>config.json</code> file will be inherited either from their parent's directory, or from the default settings defined in <code>nerc</code>.</p>
 <h3 id="styles-css"><a href="#styles-css" class="anchor" aria-hidden="true">🔗</a>styles.css</h3>
 <p>If one is not present in the root directory, a <code>styles.css</code> file will be generated and linked to by all pages in the directory and any child directories. If you wish to define your own style for your site, it is recommended to allow <code>nerc</code> to generate the <code>styles.css</code> file and modify that to set global style settings.</p>
@@ -119,31 +166,97 @@ This is a list of the various config options:</p>
 </code></pre>
 <p>So as to allow individual styles to be overridden on a per-directory basis.
 Here are a list of classes and IDs which can be styled:</p>
-<p>| <strong>Class/ID</strong> | ** Description**                                                                            |
-| ------------ | ------------------------------------------------------------------------------------------- |
-| <code>.spacer</code>    | Styles spacers used to separate links and the left and right text in the footer.            |
-| <code>.nerc</code>      | Styles shared by every element that generated content gets inserted to in the visible page. |
-| <code>#container</code> | Element containing all the elements of the page.                                            |
-| <code>#links</code>     | Element containing links at the top of the page.                                            |
-| <code>#header</code>    | Element containing the Page Title and Subtitle.                                             |
-| <code>#body</code>      | Element containing Sidebar and Content.                                                     |
-| <code>#sidebar</code>   | Element containing an unordered list linking to different pages and directories.            |
-| <code>#content</code>   | Element containing the contents of the document, rendered as HTML                           |
-| <code>#foote</code>     | Element containing the footer contents.                                                     |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Class/ID</strong></th>
+<th>** Description**</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.spacer</code></td>
+<td>Styles spacers used to separate links and the left and right text in the footer.</td>
+</tr>
+<tr>
+<td><code>.nerc</code></td>
+<td>Styles shared by every element that generated content gets inserted to in the visible page.</td>
+</tr>
+<tr>
+<td><code>#container</code></td>
+<td>Element containing all the elements of the page.</td>
+</tr>
+<tr>
+<td><code>#links</code></td>
+<td>Element containing links at the top of the page.</td>
+</tr>
+<tr>
+<td><code>#header</code></td>
+<td>Element containing the Page Title and Subtitle.</td>
+</tr>
+<tr>
+<td><code>#body</code></td>
+<td>Element containing Sidebar and Content.</td>
+</tr>
+<tr>
+<td><code>#sidebar</code></td>
+<td>Element containing an unordered list linking to different pages and directories.</td>
+</tr>
+<tr>
+<td><code>#content</code></td>
+<td>Element containing the contents of the document, rendered as HTML</td>
+</tr>
+<tr>
+<td><code>#foote</code></td>
+<td>Element containing the footer contents.</td>
+</tr></tbody></table>
 <h3 id="template-html"><a href="#template-html" class="anchor" aria-hidden="true">🔗</a>template.html</h3>
 <p>Like <code>config.json</code>, pages in a directory will use the last defined template up the chain of directories back to the root. Unlike <code>config.json</code> and <code>styles.css</code>,  however, <code>template.html</code> overrides the whole page, so if you wish to override it, you'll have to define the whole page layout.
 In order for content to be inserted into the page during generation, you'll need to declare the following tokens in your template:</p>
-<p>| <strong>Tag</strong>               | <strong>Description</strong>                                                                                                                   |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| <code>&lt;!--page title--&gt;</code>   | Inserts the string defined by <code>&quot;page title&quot;</code> in <code>config.json</code>.                                                                    |
-| <code>&lt;!--styles--&gt;</code>       | Inserts the chain of <code>styles.css</code> files that apply to the current directory.                                                      |
-| <code>&lt;!--links--&gt;</code>        | Inserts a series of <code>&lt;a&gt;</code> tags and spacers defined by <code>&quot;links&quot;</code> in <code>config.json</code>.                                                 |
-| <code>&lt;!--site title--&gt;</code>   | Inserts the string defined by <code>&quot;site title&quot;</code> in <code>config.json</code>.                                                                    |
-| <code>&lt;!--subtitle--&gt;</code>     | Inserts the string defined by <code>&quot;subtitle&quot;</code> in <code>config.json</code>.                                                                      |
-| <code>&lt;!--sidebar--&gt;</code>      | Inserts an unordered list representing the directory structure of the website and all its generated/discovered pages/directories. |
-| <code>&lt;!--content--&gt;</code>      | Inserts the contents of the markdown document, rendered as HMTL elements.                                                         |
-| <code>&lt;!--footer left--&gt;</code>  | Inserts the string defined by &quot;footer left&quot; in <code>config.json</code>.                                                                     |
-| <code>&lt;!--footer right--&gt;</code> | Inserts the string defined by &quot;footer right&quot; in <code>config.json</code>.                                                                    |</p>
+<table>
+<thead>
+<tr>
+<th><strong>Tag</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;!--page title--&gt;</code></td>
+<td>Inserts the string defined by <code>&quot;page title&quot;</code> in <code>config.json</code>.</td>
+</tr>
+<tr>
+<td><code>&lt;!--styles--&gt;</code></td>
+<td>Inserts the chain of <code>styles.css</code> files that apply to the current directory.</td>
+</tr>
+<tr>
+<td><code>&lt;!--links--&gt;</code></td>
+<td>Inserts a series of <code>&lt;a&gt;</code> tags and spacers defined by <code>&quot;links&quot;</code> in <code>config.json</code>.</td>
+</tr>
+<tr>
+<td><code>&lt;!--site title--&gt;</code></td>
+<td>Inserts the string defined by <code>&quot;site title&quot;</code> in <code>config.json</code>.</td>
+</tr>
+<tr>
+<td><code>&lt;!--subtitle--&gt;</code></td>
+<td>Inserts the string defined by <code>&quot;subtitle&quot;</code> in <code>config.json</code>.</td>
+</tr>
+<tr>
+<td><code>&lt;!--sidebar--&gt;</code></td>
+<td>Inserts an unordered list representing the directory structure of the website and all its generated/discovered pages/directories.</td>
+</tr>
+<tr>
+<td><code>&lt;!--content--&gt;</code></td>
+<td>Inserts the contents of the markdown document, rendered as HMTL elements.</td>
+</tr>
+<tr>
+<td><code>&lt;!--footer left--&gt;</code></td>
+<td>Inserts the string defined by &quot;footer left&quot; in <code>config.json</code>.</td>
+</tr>
+<tr>
+<td><code>&lt;!--footer right--&gt;</code></td>
+<td>Inserts the string defined by &quot;footer right&quot; in <code>config.json</code>.</td>
+</tr></tbody></table>
 <h2 id="building"><a href="#building" class="anchor" aria-hidden="true">🔗</a>Building</h2>
 <p>Be sure to have <a href="https://github.com/soasme/nim-markdown">Nim-markdown</a> installed first:</p>
 <pre><code class="language-shell">nimble install markdown
